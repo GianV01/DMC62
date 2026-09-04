@@ -12,7 +12,7 @@ elif modulos == "Arreglos":
   st.write("Te encuentras en el modulo arreglos")
 
 elif modulos == "Funciones":
-  st.write("Te encuentras en el modulo Funciones")
+  st.write("Te encuentras en el modulo funciones")
 
 else:
-  st.write("No te encuentrsa en ningun codigo")
+  st.write("Te encuentras en el modulo POO")
