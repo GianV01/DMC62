@@ -1,29 +1,37 @@
 import streamlit as st
 import numpy as np
 
-st.title ("Especialización Pyhton for Analitycs")
-st.sidebar.title("Parametros de Ingreso")
+st.title("Especialización Python for Analytics")
+st.sidebar.title("Parámetros")
 st.write("Elaborado por: Giancarlo Valdivia")
 
-st.image("python_logo.png", width =300)
+st.image("python_logo.png",width =300)
 st.sidebar.image("DMC.png")
-modulos = st.sidebar.selectbox ("Seleccione el módulo",["Listas","Arreglos","Funciones","POO"])
+
+
+modulos = st.sidebar.selectbox("Selecione el módulo",["Listas", "Arreglos", "Funciones", "POO"])
 
 if modulos == "Listas":
-  st.write("Te encuentras en el modulo de listas")
-  
-  valor_inicial = st.number_input("Ingrese tu valor inicial del rango", value = 0)
-  valor_final = st.number_input("Ingrese tu valor final del rango", value = 10)
+  st.write("Te encuentras en el módulo de listas")
 
-  lista = list(range(valor_inicial,valor_final))
+  valor_inicial = int(st.number_input("Ingresa tu valor inicial del rango", value=0))
+  valor_final = int(st.number_input("Ingresa tu valor final del rango",value=10))
+
+  lista = list(range(valor_inicial, valor_final))
 
   st.write(lista)
 
 elif modulos == "Arreglos":
-  st.write("Te encuentras en el modulo arreglos")
+  st.write("Te encuentras en el módulo de arreglos")
+
+  cantidad = st.slider("Seleccione un valor del rango", min_value = 1, max_value = 100, value=20 )
+  arreglo = np.arange(cantidad)
+
+  st.write(arreglo)
+
 
 elif modulos == "Funciones":
-  st.write("Te encuentras en el modulo funciones")
-
+  st.write("Te encuentras en el módulo de Funciones")
+  
 else:
-  st.write("Te encuentras en el modulo POO")
+  st.write("Te encuentras en el módulo de POO")
