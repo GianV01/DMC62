@@ -5,7 +5,8 @@ st.title ("Especialización Pyhton for Analitycs")
 st.sidebar.title("Parametros de Ingreso")
 st.write("Elaborado por: Giancarlo Valdivia")
 
-st.image("python_logo.png")
+st.image("python_logo.png", width =300)
+st.sidebar.image("DMC.png")
 modulos = st.sidebar.selectbox ("Seleccione el módulo",["Listas","Arreglos","Funciones","POO"])
 
 if modulos == "Listas":
