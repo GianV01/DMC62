@@ -4,9 +4,9 @@ import libreria_funciones as lf
 
 st.title("Especialización Python for Analytics")
 st.sidebar.title("Parámetros")
-st.write("Elaborado por: Giancarlo Valdivia")
+st.write("Elaborado por: Carlos Carrillo")
 
-st.image("python_logo.png",width =300)
+st.image("Python_logo.png",width =300)
 st.sidebar.image("DMC.png")
 
 
@@ -33,14 +33,14 @@ elif modulos == "Arreglos":
 
 elif modulos == "Funciones":
   st.write("Te encuentras en el módulo de Funciones")
-  capital_i = st.number_input("Ingrese el capital inicial", min_value=0, max_value = 100000, value=1000)
-  aporte_m = st.number_input("Ingrese el aporte mensual", min_value=0, max_value = 100000, value=100)
-  tasa_a = st.slider("Ingrese la tasa anual", min_value=0.01, max_value = 1.0, value=0.05)
-  anios = st.slider ("Ingrese el aporte mensual", min_value=1, max_value=20, value=2)
-  lf.valor_futuro_inversion(capital_i, aporte_n, tasa_a,anios)
-  st.write("El resultado de tu valor futuro de inversión es: ", resultado_valor_futuro)
+  capital_i = st.number_input("Ingrese el capital inicial", min_value = 0 , max_value = 100000, value=1000)
+  aporte_m = st.number_input("Ingrese el aporte mensual", min_value = 0 , max_value = 10000, value=100)
+  tasa_a = st.slider("Ingrese el aporte mensual", min_value = 0.01 , max_value = 1.00, value=0.05)
+  anios = st.slider("Ingrese el aporte mensual", min_value = 1 , max_value = 20, value=2)
 
-
-
+  resultado_valor_futuro = lf.valor_futuro_inversion(capital_i ,aporte_m,tasa_a,anios)
+  st.write("El resultados de tu valor futuro de inversión es: ",round(resultado_valor_futuro,2))
+  
 else:
   st.write("Te encuentras en el módulo de POO")
+  
