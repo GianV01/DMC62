@@ -38,7 +38,7 @@ st.subheader (" 2026 ", text_alignment="center")
 
 st.divider()
 
-col3, col4, col5, col6 = st.columns(6)
+col3, col4, col5, col6 = st.columns(4)
 
 with col3:
   with st.container(horizontal_alignment="center"):
