@@ -19,6 +19,7 @@ with col3:
 st.divider()
 
 st.markdown(" Elabadorado por **Giancarlo Esteban Valdivia Asencio**", text_alignment="center")
+st.subheader (" Elabadorado por **Giancarlo Esteban Valdivia Asencio**", text_alignment="center")
                          
 st.divider()
 
