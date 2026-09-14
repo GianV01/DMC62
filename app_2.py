@@ -4,6 +4,7 @@ st.sidebar.title("Secciones")
 secciones = st.sidebar.selectbox("Selecione el módulo",["Home", "Ejercicio 1", "Ejercicio 2", "Ejercicio 3","Ejercicio 4"])
 
 if secciones == "Home":
+  st.write ("Te encuentras en Home")
 
 elif secciones == "Ejercicio 1":
 
