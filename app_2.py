@@ -59,8 +59,6 @@ st.divider()
 
 st.subheader (" 2026 ", text_alignment="center")
 
-st.divider()
-
 elif secciones == "Ejercicio 1":
   st.write ("Te encuentras en el Ejercicio 1")
 
