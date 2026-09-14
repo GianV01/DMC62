@@ -18,7 +18,7 @@ with col3:
 
 st.divider()
 
-st.write(st.markdown("Elaborado por **Giancarlo Esteban Valdivia Asencio**"))
+st.write("Elaborado por **Giancarlo Esteban Valdivia Asencio**")
                          
 st.divider()
 
