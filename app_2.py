@@ -59,16 +59,20 @@ if secciones == "Home":
     st.subheader(" 2026 ",text_alignment="center")
 
 elif secciones == "Ejercicio 1":
-  st.write ("Te encuentras en home")
+  st.title("MOVIMIENTOS FINANCIEROS",text_alignment="center")
+    st.divider()
 
 elif secciones == "Ejercicio 2":
-  st.write ("Te encuentras en home")
+  st.title("FORMULARIO DE REGISTRO",text_alignment="center")
+    st.divider()
 
 elif secciones == "Ejercicio 3":
-  st.write ("Te encuentras en home")
+  st.title("......",text_alignment="center")
+    st.divider()
 
 else: 
-  st.write ("Te encuentras en home")
+  st.title("......",text_alignment="center")
+    st.divider()
 
 
   
