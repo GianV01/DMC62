@@ -7,10 +7,13 @@ if secciones == "Home":
   st.write ("Te encuentras en Home")
 
 elif secciones == "Ejercicio 1":
+  st.write ("Te encuentras en el Ejercicio 1")
 
 elif secciones == "Ejercicio 2":
+  st.write ("Te encuentras en el Ejercicio 2")
 
 elif secciones == "Ejercicio 3":
+  st.write ("Te encuentras en el Ejercicio 3")
 
 else:
 
