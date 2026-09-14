@@ -10,11 +10,14 @@ if secciones == "Home":
     col1, col2 = st.columns(2)
 
     with col1:
-        with st.container(border=True):
+        # Crea 3 columnas y coloca la imagen en la del medio
+        _, subcol_img1, _ = st.columns([1, 2, 1])
+        with subcol_img1:
             st.image("DMC.png", width=150)
 
     with col2:
-        with st.container(border=True):
+        _, subcol_img2, _ = st.columns([1, 2, 1])
+        with subcol_img2:
             st.image("python_logo.png", width=200)
 
     st.divider()
