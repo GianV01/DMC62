@@ -9,11 +9,9 @@ if secciones == "Home":
 col1, col3 = st.columns(2)
 
 with col1:
-  st.image("DMC.png")
+  st.image("DMC.png", width="stretch")
 
 with col3:
-  st.image("python_logo.png")
+  st.image("python_logo.png",width="stretch")
 
-left, right = st.columns(2, border=True)
-left.markdown(st.image("DMC.png"))
-right.markdown(st.image("python_logo.png"))
+
