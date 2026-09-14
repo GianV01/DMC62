@@ -22,8 +22,8 @@ st.subheader (" Módulo 1 – Python Fundamentals ", text_alignment="center")
 
 st.divider()
 
-texto1 = ""Se va a desarrollar una aplicación interactiva dentro haciendo uso de las plataformas GitHub y Streamlit,  
-integrando los contenidos revisados en el módulo.""  
+texto1 = "" Se va a desarrollar una aplicación interactiva dentro haciendo uso de las plataformas GitHub y Streamlit,  
+integrando los contenidos revisados en el módulo.""
 
 st.markdown(texto1, text_alignment="justify")
 
