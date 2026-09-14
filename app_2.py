@@ -42,19 +42,19 @@ col3, col4, col5, col6 = st.columns(4)
 
 with col3:
   with st.container(horizontal_alignment="center"):
-    st.markdow(" **Python** ")
+    st.markdown(" **Python** ")
 
 with col4:
   with st.container(horizontal_alignment="center"):
-    st.markdow(" **GitHub** ")
+    st.markdown(" **GitHub** ")
 
 with col5:
   with st.container(horizontal_alignment="center"):
-    st.markdow(" **Streamlib** ")
+    st.markdown(" **Streamlib** ")
 
 with col6:
   with st.container(horizontal_alignment="center"):
-    st.markdow(" **Librerias** ")
+    st.markdown(" **Librerias** ")
 
 
 
