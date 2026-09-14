@@ -41,7 +41,7 @@ st.divider()
 col3, col4, col5, col6 = st.columns(4)
 
 with col3:
-  with st.container(horizontal_alignment="center"):
+  with st.container(horizontal_alignment="left"):
     st.markdown(" **Python** ")
 
 with col4:
