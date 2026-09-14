@@ -5,3 +5,4 @@ secciones = st.sidebar.selectbox("Selecione el módulo",["Home", "Ejercicio 1", 
 
 if secciones == "Home":
   st.title("PROYECTO 1 – APLICACIÓN EN STREAMLIT")
+  st.header("PROYECTO 1 – APLICACIÓN EN STREAMLIT")
