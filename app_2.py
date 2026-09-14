@@ -62,14 +62,26 @@ st.subheader (" 2026 ", text_alignment="center")
 st.divider()
 
 elif secciones == "Ejercicio 1":
-  st.write("Movimientos Financieros")
+  st.write ("Te encuentras en el Ejercicio 1")
+  
 
-  valor_inicial = int(st.number_input("Ingresa tu valor inicial del rango", value=0))
-  valor_final = int(st.number_input("Ingresa tu valor final del rango",value=10))
+elif secciones == "Ejercicio 2":
+  st.write ("Te encuentras en el Ejercicio 2")
+  
 
-  lista = list(range(valor_inicial, valor_final))
+elif secciones == "Ejercicio 3":
+  st.write ("Te encuentras en el Ejercicio 3")
+  
 
-  st.write(lista)
+else:
+  st.write ("Te encuentras en el Ejercicio 4")
+
+
+
+
+
+
+
 
 
 
