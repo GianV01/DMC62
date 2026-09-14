@@ -45,16 +45,16 @@ with col3:
     st.markdown(" **Python** ",text_alignment="center")
 
 with col4:
-  with st.container(horizontal_alignment="right"):
-    st.markdown(" **GitHub** ")
+  with st.container(border=True):
+    st.markdown(" **GitHub** ",text_alignment="center")
 
 with col5:
-  with st.container(horizontal_alignment="center"):
-    st.markdown(" **Streamlib** ")
+  with st.container(border=True):
+    st.markdown(" **Streamlib** ",text_alignment="center")
 
 with col6:
-  with st.container(horizontal_alignment="center"):
-    st.markdown(" **Librerias** ")
+  with st.container(border=True):
+    st.markdown(" **Librerias** ",text_alignment="center")
 
 
 
