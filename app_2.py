@@ -13,3 +13,7 @@ with col1:
 
 with col3:
   st.image("python_logo.png")
+
+left, right = st.columns(2, border=True)
+left.markdown(st.image("DMC.png"))
+right.markdown(st.image("python_logo.png"))
