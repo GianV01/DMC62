@@ -60,19 +60,19 @@ if secciones == "Home":
 
 elif secciones == "Ejercicio 1":
   st.title("MOVIMIENTOS FINANCIEROS",text_alignment="center")
-    st.divider()
+  st.divider()
 
 elif secciones == "Ejercicio 2":
   st.title("FORMULARIO DE REGISTRO",text_alignment="center")
-    st.divider()
+  st.divider()
 
 elif secciones == "Ejercicio 3":
   st.title("......",text_alignment="center")
-    st.divider()
+  st.divider()
 
 else: 
   st.title("......",text_alignment="center")
-    st.divider()
+  st.divider()
 
 
   
