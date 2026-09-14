@@ -10,10 +10,12 @@ if secciones == "Home":
     col1, col2 = st.columns(2)
 
     with col1:
-        st.image("DMC.png", width=150)
+        with st.container(border=True):
+            st.image("DMC.png", width=150)
 
     with col2:
-        st.image("python_logo.png", width=200)
+        with st.container(border=True):
+            st.image("python_logo.png", width=200)
 
     st.divider()
                         
