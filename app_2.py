@@ -61,7 +61,6 @@ if secciones == "Home":
 elif secciones == "Ejercicio 1":
     st.title("MOVIMIENTOS FINANCIEROS", text_alignment="center")
     st.divider()
-    
     def mostrar_ejercicio_1():
     # Descripción del ejercicio
     st.markdown("### Ejercicio 1 – Flujo de caja con listas")
