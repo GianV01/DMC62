@@ -22,9 +22,10 @@ st.write("Elaborado por **Giancarlo Esteban Valdivia Asencio**")
 st.markdown("# Elabadorado por **Giancarlo Esteban Valdivia Asencio**")
                          
 st.divider()
-
-with st.container(horizontal_alignment="center"):
-  st.write("Elaborado por **Giancarlo Esteban Valdivia Asencio**")
+col4 = st.columns(1)
+with col4:
+  with st.container(horizontal_alignment="center"):
+    st.write("Elaborado por **Giancarlo Esteban Valdivia Asencio**")
 
 st.divider()
 
