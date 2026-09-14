@@ -45,7 +45,7 @@ if secciones == "Home":
 
     st.divider()
 
-    st.subheader(" Elaborado por Giancarlo Esteban Valdivia Asencio",text_alignment="center")
+    st.subheader("Giancarlo Esteban Valdivia Asencio",text_alignment="center")
     st.divider()
 
     st.markdown("Bachiller en la carrera de Ingenieria de Sistemas e Informatica, egresado de la universidad Tecnologica del Perú en el año 2025 cuento con 4 años de experiencia laboral entre practicas pre-profesionales, practicas profesionales y puestos laborales directos, actualmente me encuentro laborando en la empresa Molitalia, y mi interesa seguir formandome en la administracion de data.",text_alignment="justify")
