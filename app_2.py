@@ -61,6 +61,15 @@ st.subheader (" 2026 ", text_alignment="center")
 
 st.divider()
 
+elif flujo_caja == "Ejecicio 1":
+  st.write("Movimientos Financieros")
+
+  valor_inicial = int(st.number_input("Ingresa tu valor inicial del rango", value=0))
+  valor_final = int(st.number_input("Ingresa tu valor final del rango",value=10))
+
+  lista = list(range(valor_inicial, valor_final))
+
+  st.write(lista)
 
 
 
