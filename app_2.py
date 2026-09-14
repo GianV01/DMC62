@@ -26,9 +26,9 @@ st.subheader (" Elaborado por Giancarlo Esteban Valdivia Asencio", text_alignmen
 
 st.divider()
 
-st.markdown (" Bachiller en la carrera de Ingenieria de Sistemas e Informatica, egresado de la universidad Tecnologica del Perú en el año 2025 n/
-cuento con 4 años de experiencia laboral entre practicas pre-profesionales, practicas profesionales y puestos laborales directos, n/ 
-actualmente me encuentro laborando en la empresa Molitalia, y mi interesa seguir formandome en la administracion de data", text_alignment= "justify")
+st.markdown ("Bachiller en la carrera de Ingenieria de Sistemas e Informatica, egresado de la universidad Tecnologica del Perú en el año 2025" /n
+"cuento con 4 años de experiencia laboral entre practicas pre-profesionales, practicas profesionales y puestos laborales directos," /n
+"actualmente me encuentro laborando en la empresa Molitalia, y mi interesa seguir formandome en la administracion de data", text_alignment= "justify")
 
 st.divider()
 
