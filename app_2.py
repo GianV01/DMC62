@@ -26,18 +26,6 @@ st.markdown("Se va a desarrollar una aplicación interactiva haciendo uso de las
 
 st.divider()
 
-st.subheader (" Elaborado por Giancarlo Esteban Valdivia Asencio", text_alignment="center")
-
-st.divider()
-
-st.markdown ("Bachiller en la carrera de Ingenieria de Sistemas e Informatica, egresado de la universidad Tecnologica del Perú en el año 2025 cuento con 4 años de experiencia laboral entre practicas pre-profesionales, practicas profesionales y puestos laborales directos,actualmente me encuentro laborando en la empresa Molitalia, y mi interesa seguir formandome en la administracion de data. ", text_alignment= "justify")
-
-st.divider()
-
-st.subheader (" 2026 ", text_alignment="center")
-
-st.divider()
-
 st.subheader (" Tecnologias Utilizadas ", text_alignment="center")
 
 col3, col4, col5, col6 = st.columns(4)
@@ -57,6 +45,21 @@ with col5:
 with col6:
   with st.container(border=True):
     st.markdown(" **Librerias** ",text_alignment="center")
+
+st.divider()
+
+st.subheader (" Elaborado por Giancarlo Esteban Valdivia Asencio", text_alignment="center")
+
+st.divider()
+
+st.markdown ("Bachiller en la carrera de Ingenieria de Sistemas e Informatica, egresado de la universidad Tecnologica del Perú en el año 2025 cuento con 4 años de experiencia laboral entre practicas pre-profesionales, practicas profesionales y puestos laborales directos,actualmente me encuentro laborando en la empresa Molitalia, y mi interesa seguir formandome en la administracion de data. ", text_alignment= "justify")
+
+st.divider()
+
+st.subheader (" 2026 ", text_alignment="center")
+
+st.divider()
+
 
 
 
