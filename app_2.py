@@ -18,7 +18,7 @@ if secciones == "Home":
     with col2:
         _, subcol_img2, _ = st.columns([1, 2, 1])
         with subcol_img2:
-            st.image("python_logo.png", width=200)
+            st.image("python_logo.png", width=250)
 
     st.divider()
                         
