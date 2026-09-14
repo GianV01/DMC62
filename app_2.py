@@ -40,6 +40,8 @@ st.divider()
 
 col3, col4, col5, col6 = st.columns(4)
 
+st.subheader (" Tecnologias Utilizadas ", text_alignment="center")
+
 with col3:
   with st.container(border=True):
     st.markdown(" **Python** ",text_alignment="center")
