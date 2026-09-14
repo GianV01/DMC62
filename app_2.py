@@ -22,10 +22,7 @@ st.subheader (" Módulo 1 – Python Fundamentals ", text_alignment="center")
 
 st.divider()
 
-texto1 = "" Se va a desarrollar una aplicación interactiva dentro haciendo uso de las plataformas GitHub y Streamlit,  
-integrando los contenidos revisados en el módulo.""
-
-st.markdown(texto1, text_alignment="justify")
+st.markdown("Se va a desarrollar una aplicación interactiva haciendo uso de las plataformas GitHub y Streamlit,integrando los contenidos revisados en el módulo.", text_alignment="justify")
 
 st.divider()
 
@@ -40,6 +37,12 @@ st.divider()
 st.subheader (" 2026 ", text_alignment="center")
 
 st.divider()
+
+texto = """Bachiller en la carrera de Ingenieria de Sistemas e Informatica, egresado de la universidad Tecnologica del Perú en el año 2025.  
+Cuento con 4 años de experiencia laboral entre practicas pre-profesionales, practicas profesionales y puestos laborales directos.  
+Actualmente me encuentro laborando en la empresa Molitalia, y mi interesa seguir formandome en la administracion de data."""
+
+st.markdown(texto, text_alignment="justify")
 
 
 
