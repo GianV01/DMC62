@@ -111,12 +111,9 @@ elif secciones == "Ejercicio 1":
             st.error("El flujo de caja está en contra.")
         else:
             st.success("El flujo de caja está en equilibrio.")
-
-
-mostrar_ejercicio_1()
-
-
-      
+            
+            mostrar_ejercicio_1()
+     
 elif secciones == "Ejercicio 2":
     st.title("FORMULARIO DE REGISTRO", text_alignment="center")
     st.divider()
