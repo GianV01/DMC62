@@ -59,9 +59,6 @@ if secciones == "Home":
     st.subheader(" 2026 ")
 
 elif secciones == "Ejercicio 1":
-    st.write("Te encuentras en el ejercicio 1")
-
-elif secciones == "Ejercicio 1":
   st.write ("Te encuentras en home")
 
 elif secciones == "Ejercicio 2":
