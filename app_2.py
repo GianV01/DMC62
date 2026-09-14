@@ -14,7 +14,8 @@ with col1:
     st.image("DMC.png", width=150)
 
 with col2:
-  st.image("python_logo.png",width=150)
+  with st.container(horizontal_alignment="center"):
+    st.image("python_logo.png",width=200)
 
 st.divider()
                         
