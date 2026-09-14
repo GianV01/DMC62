@@ -18,8 +18,7 @@ with col3:
 
 st.divider()
 
-st.write("Elaborado por **Giancarlo Esteban Valdivia Asencio**")
-st.caption("Elaborado por **Giancarlo Esteban Valdivia Asencio**")
+st.subheader("Elaborado por **Giancarlo Esteban Valdivia Asencio**")
                          
 st.divider()
 
