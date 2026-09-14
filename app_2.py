@@ -20,7 +20,7 @@ if secciones == "Home":
     st.subheader(" Módulo 1 – Python Fundamentals ",text_alignment="center")
     st.divider()
 
-    st.markdown("Se va a desarrollar una aplicación interactiva haciendo uso de las plataformas GitHub y Streamlit, integrando los contenidos revisados en el módulo.")
+    st.markdown("Se va a desarrollar una aplicación interactiva haciendo uso de las plataformas GitHub y Streamlit, integrando los contenidos revisados en el módulo.",text_alignment="justify")
     st.divider()
 
     st.subheader(" Tecnologias Utilizadas ",text_alignment="center")
@@ -45,7 +45,7 @@ if secciones == "Home":
 
     st.divider()
 
-    st.subheader(" Elaborado por Giancarlo Esteban Valdivia Asencio")
+    st.subheader(" Elaborado por Giancarlo Esteban Valdivia Asencio",text_alignment="justify")
     st.divider()
 
     st.markdown("Bachiller en la carrera de Ingenieria de Sistemas e Informatica, egresado de la universidad Tecnologica del Perú en el año 2025 cuento con 4 años de experiencia laboral entre practicas pre-profesionales, practicas profesionales y puestos laborales directos, actualmente me encuentro laborando en la empresa Molitalia, y mi interesa seguir formandome en la administracion de data.",text_alignment="justify")
