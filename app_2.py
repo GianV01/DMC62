@@ -7,13 +7,13 @@ if secciones == "Home":
   st.title("PROYECTO 1 – APLICACIÓN EN STREAMLIT",text_alignment="center")
   st.divider()
  
-col1, col3 = st.columns(2)
+col1, col2 = st.columns(2)
 
 with col1:
   with st.container(horizontal_alignment="center"):
     st.image("DMC.png", width=150)
 
-with col3:
+with col2:
   st.image("python_logo.png",width="stretch")
 
 st.divider()
@@ -38,11 +38,24 @@ st.subheader (" 2026 ", text_alignment="center")
 
 st.divider()
 
-texto = """Bachiller en la carrera de Ingenieria de Sistemas e Informatica, egresado de la universidad Tecnologica del Perú en el año 2025.  
-Cuento con 4 años de experiencia laboral entre practicas pre-profesionales, practicas profesionales y puestos laborales directos.  
-Actualmente me encuentro laborando en la empresa Molitalia, y mi interesa seguir formandome en la administracion de data."""
+col3, col4, col5, col6 = st.columns(6)
 
-st.markdown(texto, text_alignment="justify")
+with col3:
+  with st.container(horizontal_alignment="center"):
+    st.markdow(" **Python** ")
+
+with col4:
+  with st.container(horizontal_alignment="center"):
+    st.markdow(" **GitHub** ")
+
+with col5:
+  with st.container(horizontal_alignment="center"):
+    st.markdow(" **Streamlib** ")
+
+with col6:
+  with st.container(horizontal_alignment="center"):
+    st.markdow(" **Librerias** ")
+
 
 
 
