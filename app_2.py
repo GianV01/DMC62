@@ -61,7 +61,7 @@ st.subheader (" 2026 ", text_alignment="center")
 
 st.divider()
 
-elif flujo_caja == "Ejecicio 1":
+elif flujo_caja == "Ejercicio 1":
   st.write("Movimientos Financieros")
 
   valor_inicial = int(st.number_input("Ingresa tu valor inicial del rango", value=0))
