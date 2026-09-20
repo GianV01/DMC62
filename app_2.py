@@ -66,7 +66,7 @@ elif secciones == "Ejercicio 1":
     def mostrar_ejercicio_1():
         
         if "movimientos" not in st.session_state:
-        st.session_state.movimientos = []
+            st.session_state.movimientos = []
 
     # Widgets para ingresar los datos
     concepto = st.text_input("Concepto:")
