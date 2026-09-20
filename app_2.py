@@ -201,6 +201,9 @@ elif secciones == "Ejercicio 3":
                 " en función de la cantidad de usuarios, y la cantidad de archivos a respaldar.")
     st.divider()
 
+    if "historial_calculos" not in st.session_state:
+        st.session_state.historial_calculos = []
+
     col1, col2 = st.columns(2)
     with col1:
         numero_usuarios = st.number_input("Número de Usuarios",min_value=1,value=1,step=1)
@@ -212,26 +215,24 @@ elif secciones == "Ejercicio 3":
         
     btn_ejecutar = st.button("Ejecutar")
 
-    calculo_alm = lfp.calcular_almacenamiento_respaldo(numero_usuarios,archivos_por_usuario,tamano_promedio_mb,factor_respaldo)
-    st.write("El calculo de almacenamiento de respaldo es el siguiente:", calculo_alm)
-    
-    registro = {
-        "Usuarios": numero_usuarios,
-        "Archivos/Usuario": archivos_por_usuario,
-        "Tamaño Prom. (MB)": tamano_promedio_mb,
-        "Factor": factor_respaldo,
-        "Almacenamiento (MB)": calculo_alm.get("almacenamiento_estimado_mb"),
-        "Almacenamiento (GB)": calculo_alm.get("almacenamiento_estimado_gb"),
-    }
+    if btn_ejecutar:
+    # 2. Obtener el diccionario directamente de tu función
+    calculo_alm = lfp.calcular_almacenamiento_respaldo(
+        numero_usuarios,
+        archivos_por_usuario,
+        tamano_promedio_mb,
+        factor_respaldo,
+    )
 
-    st.session_state.historial_calculos.append(registro)
-    
+    # Opcion A: Si la función devuelve un diccionario con los resultados,
+    # puedes guardarlo directamente en el historial:
+    st.session_state.historial_calculos.append(calculo_alm)
+
+# 3. MOSTRAR EL DATAFRAME ACUMULADO
 if st.session_state.historial_calculos:
-    st.write("### Historial de cálculos de almacenamiento:")
-
-    df_acumulado = pd.DataFrame(st.session_state.historial_calculos)
-    st.dataframe(df_acumulado, use_container_width=True)
-
+    st.write("### Resultados acumulados:")
+    df_resultados = pd.DataFrame(st.session_state.historial_calculos)
+    st.dataframe(df_resultados, use_container_width=True)
 
     st.divider()
     st.markdown("**Simplifica tus procesos, potencia tus resultados.**",text_alignment="center")
