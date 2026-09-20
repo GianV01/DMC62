@@ -64,7 +64,6 @@ elif secciones == "Ejercicio 1":
     st.divider()
 
     def ejercicio_1():
-        
         if "movimientos" not in st.session_state:
             st.session_state.movimientos = []
 
