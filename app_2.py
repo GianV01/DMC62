@@ -238,7 +238,7 @@ else:
     st.markdown("Este módulo define la entidad del servidor mediante sus atributos clave como:  "  
                 " identificador, tiempos operativos y capacidades de disco.A partir de estas variables,"  
                 " el código calcula dinámicamente el porcentaje de disponibilidad restando el tiempo de caída al total,  "
-                " evalúa la ocupación del espacio y genera un diagnóstico del estado general del sistema.")
+                " evalúa la ocupación del espacio y genera un diagnóstico del estado general del sistema.",text_alignment="justify")
     st.divider()
     
     
