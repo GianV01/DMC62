@@ -79,9 +79,9 @@ elif secciones == "Ejercicio 1":
                     "tipo": tipo,
                     "valor": valor
                 })
-            
-    if st.session_state.movimientos:
-        st.dataframe(st.session_state.movimientos)
+                
+            if st.session_state.movimientos:
+                st.dataframe(st.session_state.movimientos)
                         
         total_ingresos = sum(
             m["valor"]
