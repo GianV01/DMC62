@@ -119,11 +119,11 @@ elif secciones == "Ejercicio 2":
     def ejercicio_2():
         
         if "array_productos" not in st.session_state:
-        st.session_state.array_productos = np.array([], dtype=object)
-        st.session_state.array_categorias = np.array([], dtype=object)
-        st.session_state.array_precios = np.array([], dtype=float)
-        st.session_state.array_cantidades = np.array([], dtype=int)
-        st.session_state.array_totales = np.array([], dtype=float)
+            st.session_state.array_productos = np.array([], dtype=object)
+            st.session_state.array_categorias = np.array([], dtype=object)
+            st.session_state.array_precios = np.array([], dtype=float)
+            st.session_state.array_cantidades = np.array([], dtype=int)
+            st.session_state.array_totales = np.array([], dtype=float)
 
     
     st.subheader("Ingrese aqui el Producto")
