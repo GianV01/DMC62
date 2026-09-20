@@ -65,7 +65,7 @@ elif secciones == "Ejercicio 1":
 
     def ejercicio_1():
 
-        if"movimientos" not in st.session_state:
+        if "movimientos" not in st.session_state:
             st.session_state.movimientos = []
 
     concepto = st.text_input("Concepto:")
@@ -73,11 +73,15 @@ elif secciones == "Ejercicio 1":
     valor = st.number_input("Valor:", min_value=0.0,format="%.2f")
 
     if st.button("Agregar Movimiento"):
-        if concepto.strip() != "" and valor > 0:
-            st.session_state.movimientos.append({"concepto": concepto, "tipo": tipo, "valor": valor})
+            if concepto.strip() != "" and valor > 0:
+                st.session_state.movimientos.append({
+                    "concepto": concepto,
+                    "tipo": tipo,
+                    "valor": valor
+                })
             
-            if st.session_state.movimientos:
-                st.dataframe(st.session_state.movimientos)
+    if st.session_state.movimientos:
+        st.dataframe(st.session_state.movimientos)
                         
         total_ingresos = sum(
             m["valor"]
@@ -91,9 +95,9 @@ elif secciones == "Ejercicio 1":
         )
         saldo_final = total_ingresos - total_gastos
         
-        st.metric("Total Ingresos", f"${total_ingresos:,.2f}")
-        st.metric("Total Gastos", f"${total_gastos:,.2f}")
-        st.metric("Saldo Final", f"${saldo_final:,.2f}")
+        st.metric("Total Ingresos", f"S/{total_ingresos:,.2f}")
+        st.metric("Total Gastos", f"S/{total_gastos:,.2f}")
+        st.metric("Saldo Final", f"S/{saldo_final:,.2f}")
 
         
         if saldo_final > 0:
@@ -103,7 +107,7 @@ elif secciones == "Ejercicio 1":
         else:
             st.success("El flujo de caja está en equilibrio.")
             
-            mostrar_ejericio_1() 
+    ejericio_1() 
 
     st.subheader(" Elaborado por Giancarlo Valdivia ",text_alignment="center")
 
