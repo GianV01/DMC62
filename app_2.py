@@ -72,11 +72,11 @@ elif secciones == "Ejercicio 1":
     tipo = st.selectbox("Tipo de movimiento:", ["Ingreso", "Gasto"])
     valor = st.number_input("Valor:", min_value=0.0, format="%.2f")
             
-        if st.button("Agregar movimiento"):
-            if concepto.strip() != "" and valor > 0:
-                st.session_state.movimientos.append(
-                    {"concepto": concepto, "tipo": tipo, "valor": valor}
-                )
+    if st.button("Agregar movimiento"):
+        if concepto.strip() != "" and valor > 0:
+            st.session_state.movimientos.append(
+                {"concepto": concepto, "tipo": tipo, "valor": valor}
+            )
                     
                 if st.session_state.movimientos:
                     st.dataframe(st.session_state.movimientos)
