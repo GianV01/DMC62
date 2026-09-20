@@ -226,7 +226,7 @@ elif secciones == "Ejercicio 3":
 
     st.session_state.historial_calculos.append(registro)
     
-    if st.session_state.historial_calculos:
+if st.session_state.historial_calculos:
     st.write("### Historial de cálculos de almacenamiento:")
 
     df_acumulado = pd.DataFrame(st.session_state.historial_calculos)
