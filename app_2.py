@@ -214,6 +214,23 @@ elif secciones == "Ejercicio 3":
 
     calculo_alm = lfp.calcular_almacenamiento_respaldo(numero_usuarios,archivos_por_usuario,tamano_promedio_mb,factor_respaldo)
     st.write("El calculo de almacenamiento de respaldo es el siguiente:", calculo_alm)
+    
+    registro = {
+        "Usuarios": numero_usuarios,
+        "Archivos/Usuario": archivos_por_usuario,
+        "Tamaño Prom. (MB)": tamano_promedio_mb,
+        "Factor": factor_respaldo,
+        "Almacenamiento (MB)": calculo_alm.get("almacenamiento_estimado_mb"),
+        "Almacenamiento (GB)": calculo_alm.get("almacenamiento_estimado_gb"),
+    }
+
+    st.session_state.historial_calculos.append(registro)
+    
+    if st.session_state.historial_calculos:
+    st.write("### Historial de cálculos de almacenamiento:")
+
+    df_acumulado = pd.DataFrame(st.session_state.historial_calculos)
+    st.dataframe(df_acumulado, use_container_width=True)
 
 
     st.divider()
