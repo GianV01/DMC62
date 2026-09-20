@@ -216,19 +216,10 @@ elif secciones == "Ejercicio 3":
     btn_ejecutar = st.button("Ejecutar")
 
     if btn_ejecutar:
-    # 2. Obtener el diccionario directamente de tu función
-    calculo_alm = lfp.calcular_almacenamiento_respaldo(
-        numero_usuarios,
-        archivos_por_usuario,
-        tamano_promedio_mb,
-        factor_respaldo,
-    )
+        calculo_alm = lfp.calcular_almacenamiento_respaldo(numero_usuarios,archivos_por_usuario,tamano_promedio_mb,factor_respaldo)
+        st.session_state.historial_calculos.append(calculo_alm)
 
-    # Opcion A: Si la función devuelve un diccionario con los resultados,
-    # puedes guardarlo directamente en el historial:
-    st.session_state.historial_calculos.append(calculo_alm)
 
-# 3. MOSTRAR EL DATAFRAME ACUMULADO
 if st.session_state.historial_calculos:
     st.write("### Resultados acumulados:")
     df_resultados = pd.DataFrame(st.session_state.historial_calculos)
