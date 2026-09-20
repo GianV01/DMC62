@@ -193,7 +193,7 @@ if __name__ == "__main__":
 
     st.divider()
     st.markdown("**Lo que no se mide, no se controla; lo que no se controla, no mejora.**",text_alignment="center")
-    
+
 elif secciones == "Ejercicio 3":
     st.title(".....", text_alignment="center")
     st.divider()
