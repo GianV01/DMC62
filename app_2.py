@@ -78,20 +78,20 @@ elif secciones == "Ejercicio 1":
                 {"concepto": concepto, "tipo": tipo, "valor": valor}
             )
                     
-                if st.session_state.movimientos:
-                    st.dataframe(st.session_state.movimientos)
+            if st.session_state.movimientos:
+                st.dataframe(st.session_state.movimientos)
                         
-                    total_ingresos = sum(
-                        m["valor"]
-                        for m in st.session_state.movimientos
-                        if m["tipo"] == "Ingreso"
-                    )
+                total_ingresos = sum(
+                    m["valor"]
+                    for m in st.session_state.movimientos
+                    if m["tipo"] == "Ingreso"
+                )
                         
-                    total_gastos = sum(
-                        m["valor"]
-                        for m in st.session_state.movimientos
-                        if m["tipo"] == "Gasto"
-                    )
+                total_gastos = sum(
+                    m["valor"]
+                    for m in st.session_state.movimientos
+                    if m["tipo"] == "Gasto"
+                )
                     saldo_final = total_ingresos - total_gastos
                         
                     st.metric("Total Ingresos", f"S/{total_ingresos:,.2f}")
