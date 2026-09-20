@@ -63,7 +63,7 @@ elif secciones == "Ejercicio 1":
     st.markdown("En este ejercicio se va a desarollar una planilla para el control de ingresos y gastos diarios o mensuales que puede tener un usuario, con el proposito de mejorar la manera en la **administra su dinero**",text_alignment="justify")
     st.divider()
 
-def mostrar_ejercicio_1():
+    def mostrar_ejercicio_1():
     # Descripción del ejercicio
     st.markdown("### Ejercicio 1 – Flujo de caja con listas")
     st.markdown(
