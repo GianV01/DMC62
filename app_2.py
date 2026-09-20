@@ -67,48 +67,45 @@ elif secciones == "Ejercicio 1":
         
         if "movimientos" not in st.session_state:
             st.session_state.movimientos = []
-
-    
-    concepto = st.text_input("Concepto:")
-    tipo = st.selectbox("Tipo de movimiento:", ["Ingreso", "Gasto"])
-    valor = st.number_input("Valor:", min_value=0.0, format="%.2f")
-
-    
-    if st.button("Agregar movimiento"):
-        if concepto.strip() != "" and valor > 0:
-            st.session_state.movimientos.append(
-                {"concepto": concepto, "tipo": tipo, "valor": valor}
-            )
             
-            if st.session_state.movimientos:
-                st.dataframe(st.session_state.movimientos)
-                
-                total_ingresos = sum(
-                    m["valor"]
-                    for m in st.session_state.movimientos
-                    if m["tipo"] == "Ingreso"
-                )
-                total_gastos = sum(
-                    m["valor"]
-                    for m in st.session_state.movimientos
-                    if m["tipo"] == "Gasto"
-                )
-                saldo_final = total_ingresos - total_gastos
-
-       
-        st.metric("Total Ingresos", f"S/{total_ingresos:,.2f}")
-        st.metric("Total Gastos", f"S/{total_gastos:,.2f}")
-        st.metric("Saldo Final", f"S/{saldo_final:,.2f}")
-
-        
-        if saldo_final > 0:
-            st.success("El flujo de caja está a favor.")
-        elif saldo_final < 0:
-            st.error("El flujo de caja está en contra.")
-        else:
-            st.success("El flujo de caja está en equilibrio.")
+            concepto = st.text_input("Concepto:")
+            tipo = st.selectbox("Tipo de movimiento:", ["Ingreso", "Gasto"])
+            valor = st.number_input("Valor:", min_value=0.0, format="%.2f")
             
-            mostrar_ejercicio_1()
+            if st.button("Agregar movimiento"):
+                if concepto.strip() != "" and valor > 0:
+                    st.session_state.movimientos.append(
+                        {"concepto": concepto, "tipo": tipo, "valor": valor}
+                    )
+                    
+                    if st.session_state.movimientos:
+                        st.dataframe(st.session_state.movimientos)
+                        
+                        total_ingresos = sum(
+                            m["valor"]
+                            for m in st.session_state.movimientos
+                            if m["tipo"] == "Ingreso"
+                        )
+                        
+                        total_gastos = sum(
+                            m["valor"]
+                            for m in st.session_state.movimientos
+                            if m["tipo"] == "Gasto"
+                        )
+                        saldo_final = total_ingresos - total_gastos
+                        
+                        st.metric("Total Ingresos", f"S/{total_ingresos:,.2f}")
+                        st.metric("Total Gastos", f"S/{total_gastos:,.2f}")
+                        st.metric("Saldo Final", f"S/{saldo_final:,.2f}")
+                        
+                        if saldo_final > 0:
+                            st.success("El flujo de caja está a favor.")
+                        elif saldo_final < 0:
+                            st.error("El flujo de caja está en contra.")
+                        else:
+                            st.success("El flujo de caja está en equilibrio.")
+                            
+                            mostrar_ejercicio_1()
         
 elif secciones == "Ejercicio 2":
     st.title("FORMULARIO DE REGISTRO", text_alignment="center")
