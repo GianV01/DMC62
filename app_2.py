@@ -317,10 +317,10 @@ if st.session_state["historico"]:
     df_historico = pd.DataFrame(st.session_state["historico"])
     st.dataframe(df_historico, use_container_width=True)
 
-    if st.button("🗑️ Limpiar Histórico"):
+ if st.button("🗑️ Limpiar Histórico"):
         st.session_state["historico"] = []
         st.rerun()
-    else:
+ else:
     st.caption("Aún no se han guardado resultados en esta sesión.")
 
 
