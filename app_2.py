@@ -244,13 +244,13 @@ elif secciones == "Ejercicio 3":
         ["Cálculo de Almacenamiento Estándar", "Cálculo de Almacenamiento Completo"]
     )
 
-    # Widget 2: st.text_input()
+    
     etiqueta = st.text_input(
         "Nombre o Etiqueta del Cálculo (Opcional)", 
         value="Servidor Principal"
     )
 
-    # Widget 3: st.number_input()
+    
     col1, col2 = st.columns(2)
     with col1:
         numero_usuarios = st.number_input(
@@ -279,9 +279,8 @@ elif secciones == "Ejercicio 3":
             value=1.5, 
             step=0.1
         )
-
-    # Widget 4: st.button()
-    btn_ejecutar = st.button("Ejecutar Función")
+        
+        btn_ejecutar = st.button("Ejecutar Función")
     
     if btn_ejecutar:
         try:
@@ -292,10 +291,9 @@ elif secciones == "Ejercicio 3":
                 factor_respaldo=float(factor_respaldo)
             )
 
-            # Widget 5: st.write()
-            st.write(f"✅ **Resultado para '{etiqueta}' ({funcion_seleccionada}):**")
-            st.write(f"- **Almacenamiento Necesario (MB):** {resultado['almacenamiento_estimado_mb']:,} MB")
-            st.write(f"- **Almacenamiento Necesario (GB):** {resultado['almacenamiento_estimado_gb']:,} GB")
+        st.write(f"✅ **Resultado para '{etiqueta}' ({funcion_seleccionada}):**")
+        st.write(f"- **Almacenamiento Necesario (MB):** {resultado['almacenamiento_estimado_mb']:,} MB")
+        st.write(f"- **Almacenamiento Necesario (GB):** {resultado['almacenamiento_estimado_gb']:,} GB")
 
             # Guardar en el DataFrame histórico
             nuevo_registro = pd.DataFrame([{
