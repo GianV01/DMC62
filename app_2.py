@@ -78,8 +78,7 @@ elif secciones == "Ejercicio 1":
             
             if st.session_state.movimientos:
                 st.dataframe(st.session_state.movimientos)
-
-        
+                        
         total_ingresos = sum(
             m["valor"]
             for m in st.session_state.movimientos
@@ -91,6 +90,19 @@ elif secciones == "Ejercicio 1":
             if m["tipo"] == "Gasto"
         )
         saldo_final = total_ingresos - total_gastos
+        
+        st.metric("Total Ingresos", f"${total_ingresos:,.2f}")
+        st.metric("Total Gastos", f"${total_gastos:,.2f}")
+        st.metric("Saldo Final", f"${saldo_final:,.2f}")
+
+        
+        if saldo_final > 0:
+            st.success("El flujo de caja está a favor.")
+        elif saldo_final < 0:
+            st.error("El flujo de caja está en contra.")
+        else:
+            st.success("El flujo de caja está en equilibrio.")
+        
         
     
 
