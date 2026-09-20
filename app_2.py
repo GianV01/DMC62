@@ -64,13 +64,13 @@ elif secciones == "Ejercicio 1":
     st.divider()
                   
     def ejercicio_1():
-       
-    if "movimientos" not in st.session_state:
+        
+        if "movimientos" not in st.session_state:
         st.session_state.movimientos = []
-
-    concepto = st.text_input("Concepto:")
-    tipo = st.selectbox("Tipo de movimiento:", ["Ingreso", "Gasto"])
-    valor = st.number_input("Valor:", min_value=0.0, format="%.2f")
+        
+        concepto = st.text_input("Concepto:")
+        tipo = st.selectbox("Tipo de movimiento:", ["Ingreso", "Gasto"])
+        valor = st.number_input("Valor:", min_value=0.0, format="%.2f")
 
     if st.button("Agregar Movimiento"):
         if concepto.strip() != "" and valor > 0:
