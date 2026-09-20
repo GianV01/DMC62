@@ -256,13 +256,13 @@ elif secciones == "Ejercicio 3":
         numero_usuarios = st.number_input(
             "Número de Usuarios", 
             min_value=1, 
-            value=10, 
+            value=1, 
             step=1
         )
         archivos_por_usuario = st.number_input(
             "Archivos por Usuario", 
             min_value=1, 
-            value=50, 
+            value=10, 
             step=5
         )
 
@@ -282,8 +282,7 @@ elif secciones == "Ejercicio 3":
 
     # Widget 4: st.button()
     btn_ejecutar = st.button("Ejecutar Función")
-
-    # Procesar cálculo con la función
+    
     if btn_ejecutar:
         try:
             resultado = calcular_almacenamiento_respaldo(
@@ -318,16 +317,16 @@ elif secciones == "Ejercicio 3":
         except ValueError as e:
             st.write(f"⚠️ **Error en la validación:** {e}")
 
-    # Widget 6: st.dataframe()
+    
     st.write("### Histórico de Resultados Obtenidos")
     
     if not st.session_state.historial_respaldos.empty:
         st.dataframe(st.session_state.historial_respaldos, use_container_width=True)
     else:
         st.write("Aún no se han realizado cálculos en esta sesión.")
-
-if __name__ == "__main__":
-    ejercicio_3()
+        
+        if __name__ == "__main__":
+            ejercicio_3()
 
 
     st.divider()
