@@ -201,8 +201,8 @@ elif secciones == "Ejercicio 3":
     st.divider()
     
     def validar_positivo(valor, nombre):
-    if valor <= 0:
-        raise ValueError(f"El campo '{nombre}' debe ser un número positivo mayor a 0.")
+        if valor <= 0:
+            raise ValueError(f"El campo '{nombre}' debe ser un número positivo mayor a 0.")
     
     def calcular_almacenamiento_respaldo(
         numero_usuarios: int,
