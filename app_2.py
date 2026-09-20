@@ -158,11 +158,10 @@ elif secciones == "Ejercicio 2":
         st.session_state.array_totales = np.append(st.session_state.arr_totales, total)
         
         st.success(f"Producto '{producto}' agregado correctamente.")
-
-    
-    st.subheader("Productos Registrados")
-    
-    if len(st.session_state.array_productos) > 0:
+        
+        st.subheader("Productos Registrados")
+        
+        if len(st.session_state.array_productos) > 0:
        
         df_registros = pd.DataFrame({
             "Producto": st.session_state.array_productos,
