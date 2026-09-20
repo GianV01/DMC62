@@ -10,7 +10,7 @@ if secciones == "Home":
     col1, col2 = st.columns(2)
 
     with col1:
-        # Crea 3 columnas y coloca la imagen en la del medio
+        
         _, subcol_img1, _ = st.columns([1, 2, 1])
         with subcol_img1:
             st.image("DMC.png", width=150)
@@ -94,9 +94,9 @@ elif secciones == "Ejercicio 1":
                     )
                     saldo_final = total_ingresos - total_gastos
                         
-                        st.metric("Total Ingresos", f"S/{total_ingresos:,.2f}")
-                        st.metric("Total Gastos", f"S/{total_gastos:,.2f}")
-                        st.metric("Saldo Final", f"S/{saldo_final:,.2f}")
+                    st.metric("Total Ingresos", f"S/{total_ingresos:,.2f}")
+                    st.metric("Total Gastos", f"S/{total_gastos:,.2f}")
+                    st.metric("Saldo Final", f"S/{saldo_final:,.2f}")
                         
                         if saldo_final > 0:
                             st.success("El flujo de caja está a favor.")
