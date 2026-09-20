@@ -64,12 +64,7 @@ elif secciones == "Ejercicio 1":
     st.divider()
 
     def mostrar_ejercicio_1():
-    # Descripción del ejercicio
-    st.markdown("### Ejercicio 1 – Flujo de caja con listas")
-    st.markdown(
-        "Módulo para registrar movimientos financieros y calcular el saldo del flujo de caja."
-    )
-
+    
     # Inicialización de la lista vacía en el estado de la sesión
     if "movimientos" not in st.session_state:
         st.session_state.movimientos = []
