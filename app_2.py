@@ -59,6 +59,8 @@ if secciones == "Home":
     st.subheader(" 2026 ",text_alignment="center")
 elif secciones == "Ejercicio 1":
 
+    st.subheader(" Elaborado por Giancarlo Valdivia ",text_alignment="center")
+
 elif secciones == "Ejercicio 2":
     st.title("FORMULARIO DE REGISTRO", text_alignment="center")
     st.divider()
