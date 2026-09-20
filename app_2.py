@@ -199,6 +199,136 @@ elif secciones == "Ejercicio 3":
     st.markdown("Esta herramienta permite calcular el **almacenamiento estimado necesario para respaldos**"  
                 " en función de la cantidad de usuarios, archivos y un factor de duplicación.")
     st.divider()
+    
+    def validar_positivo(valor, nombre):
+    if valor <= 0:
+        raise ValueError(f"El campo '{nombre}' debe ser un número positivo mayor a 0.")
+    
+    def calcular_almacenamiento_respaldo(
+        numero_usuarios: int,
+        archivos_por_usuario: int,
+        tamano_promedio_mb: float,
+        factor_respaldo: float
+    ) -> dict:
+        validar_positivo(numero_usuarios, "numero_usuarios")
+        validar_positivo(archivos_por_usuario, "archivos_por_usuario")
+        validar_positivo(tamano_promedio_mb, "tamano_promedio_mb")
+        validar_positivo(factor_respaldo, "factor_respaldo")
+        
+        almacenamiento_mb = (numero_usuarios * archivos_por_usuario * tamano_promedio_mb * factor_respaldo)
+        almacenamiento_gb = almacenamiento_mb / 1024
+        
+        return {
+            "almacenamiento_estimado_mb": round(almacenamiento_mb, 2),
+            "almacenamiento_estimado_gb": round(almacenamiento_gb, 2)
+        }
+        
+        def ejercicio_3(): 
+        
+        if "historial_respaldos" not in st.session_state:
+            st.session_state.historial_respaldos = pd.DataFrame(columns=[
+                "Etiqueta", 
+                "Tipo Respaldo", 
+                "N° Usuarios", 
+                "Archivos/Usuario", 
+                "Tamaño (MB)", 
+                "Factor", 
+                "Estimado (MB)", 
+                "Estimado (GB)"
+            ])
+            
+    st.write("### Selección de Función y Parámetros")
+
+    
+    funcion_seleccionada = st.selectbox(
+        "Seleccione el Tipo de Respaldo", 
+        ["Cálculo de Almacenamiento Estándar", "Cálculo de Almacenamiento Completo"]
+    )
+
+    # Widget 2: st.text_input()
+    etiqueta = st.text_input(
+        "Nombre o Etiqueta del Cálculo (Opcional)", 
+        value="Servidor Principal"
+    )
+
+    # Widget 3: st.number_input()
+    col1, col2 = st.columns(2)
+    with col1:
+        numero_usuarios = st.number_input(
+            "Número de Usuarios", 
+            min_value=1, 
+            value=10, 
+            step=1
+        )
+        archivos_por_usuario = st.number_input(
+            "Archivos por Usuario", 
+            min_value=1, 
+            value=50, 
+            step=5
+        )
+
+    with col2:
+        tamano_promedio_mb = st.number_input(
+            "Tamaño Promedio por Archivo (MB)", 
+            min_value=0.1, 
+            value=5.0, 
+            step=0.5
+        )
+        factor_respaldo = st.number_input(
+            "Factor de Respaldo", 
+            min_value=1.0, 
+            value=1.5, 
+            step=0.1
+        )
+
+    # Widget 4: st.button()
+    btn_ejecutar = st.button("Ejecutar Función")
+
+    # Procesar cálculo con la función
+    if btn_ejecutar:
+        try:
+            resultado = calcular_almacenamiento_respaldo(
+                numero_usuarios=int(numero_usuarios),
+                archivos_por_usuario=int(archivos_por_usuario),
+                tamano_promedio_mb=float(tamano_promedio_mb),
+                factor_respaldo=float(factor_respaldo)
+            )
+
+            # Widget 5: st.write()
+            st.write(f"✅ **Resultado para '{etiqueta}' ({funcion_seleccionada}):**")
+            st.write(f"- **Almacenamiento Necesario (MB):** {resultado['almacenamiento_estimado_mb']:,} MB")
+            st.write(f"- **Almacenamiento Necesario (GB):** {resultado['almacenamiento_estimado_gb']:,} GB")
+
+            # Guardar en el DataFrame histórico
+            nuevo_registro = pd.DataFrame([{
+                "Etiqueta": etiqueta,
+                "Tipo Respaldo": funcion_seleccionada,
+                "N° Usuarios": numero_usuarios,
+                "Archivos/Usuario": archivos_por_usuario,
+                "Tamaño (MB)": tamano_promedio_mb,
+                "Factor": factor_respaldo,
+                "Estimado (MB)": resultado["almacenamiento_estimado_mb"],
+                "Estimado (GB)": resultado["almacenamiento_estimado_gb"]
+            }])
+
+            st.session_state.historial_respaldos = pd.concat(
+                [st.session_state.historial_respaldos, nuevo_registro], 
+                ignore_index=True
+            )
+
+        except ValueError as e:
+            st.write(f"⚠️ **Error en la validación:** {e}")
+
+    # Widget 6: st.dataframe()
+    st.write("### Histórico de Resultados Obtenidos")
+    
+    if not st.session_state.historial_respaldos.empty:
+        st.dataframe(st.session_state.historial_respaldos, use_container_width=True)
+    else:
+        st.write("Aún no se han realizado cálculos en esta sesión.")
+
+if __name__ == "__main__":
+    ejercicio_3()
 
 
     st.divider()
