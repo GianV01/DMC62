@@ -146,8 +146,14 @@ elif secciones == "Ejercicio 2":
 
     
     if btn_agregar:
-        if producto.strip() == "":
-            st.warning("Por favor, ingresa el nombre del producto.")
+        if not producto.strip():
+            st.error("⚠️ El **Nombre del Producto** es obligatorio.")
+        elif categoria == "-- Selecciona una categoría --":
+            st.error("⚠️ Debes seleccionar una **Categoría** válida.")
+        elif precio <= 0:
+            st.error("⚠️ El **Precio** debe ser mayor a 0.")
+        elif cantidad <= 0:
+            st.error("⚠️ La **Cantidad** debe ser mayor a 0.")
         else:
            total = precio * cantidad
             
