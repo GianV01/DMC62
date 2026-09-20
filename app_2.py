@@ -280,10 +280,10 @@ elif secciones == "Ejercicio 3":
             step=0.1
         )
         
-        btn_ejecutar = st.button("Ejecutar")
-        
-        if btn_ejecutar:
-            try:
+    btn_ejecutar = st.button("Ejecutar")
+    
+    if btn_ejecutar:
+        try:
                 resultado = calcular_almacenamiento_respaldo(
                 numero_usuarios=int(numero_usuarios),
                 archivos_por_usuario=int(archivos_por_usuario),
