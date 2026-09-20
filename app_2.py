@@ -290,12 +290,11 @@ elif secciones == "Ejercicio 3":
                 tamano_promedio_mb=float(tamano_promedio_mb),
                 factor_respaldo=float(factor_respaldo)
             )
+            st.write(f"✅ **Resultado para '{etiqueta}' ({funcion_seleccionada}):**")
+            st.write(f"- **Almacenamiento Necesario (MB):** {resultado['almacenamiento_estimado_mb']:,} MB")
+            st.write(f"- **Almacenamiento Necesario (GB):** {resultado['almacenamiento_estimado_gb']:,} GB")
 
-        st.write(f"✅ **Resultado para '{etiqueta}' ({funcion_seleccionada}):**")
-        st.write(f"- **Almacenamiento Necesario (MB):** {resultado['almacenamiento_estimado_mb']:,} MB")
-        st.write(f"- **Almacenamiento Necesario (GB):** {resultado['almacenamiento_estimado_gb']:,} GB")
-
-            # Guardar en el DataFrame histórico
+            
             nuevo_registro = pd.DataFrame([{
                 "Etiqueta": etiqueta,
                 "Tipo Respaldo": funcion_seleccionada,
