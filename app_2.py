@@ -194,8 +194,15 @@ elif secciones == "Ejercicio 2":
     st.markdown("**Lo que no se mide, no se controla; lo que no se controla, no mejora.**",text_alignment="center")
 
 elif secciones == "Ejercicio 3":
-    st.title(".....", text_alignment="center")
+    st.title(" Ejercicio 3 - Cálculo de Almacenamiento de Respaldo", text_alignment="center")
     st.divider()
+    st.markdown("Esta herramienta permite calcular el **almacenamiento estimado necesario para respaldos**"  
+                "en función de la cantidad de usuarios, archivos promedio y un factor de duplicación.")
+    st.divider()
+
+
+    st.divider()
+    st.markdown("**Simplifica tus procesos, potencia tus resultados.**",text_alignment="center")
 
 else: 
     st.title(".....", text_alignment="center")
