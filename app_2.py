@@ -201,6 +201,7 @@ elif secciones == "Ejercicio 3":
 else: 
     st.title(".....", text_alignment="center")
     st.divider()
+    
 
 
   
