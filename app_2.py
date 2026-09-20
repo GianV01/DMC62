@@ -223,11 +223,11 @@ elif secciones == "Ejercicio 3":
         calculo_alm = lfp.calcular_almacenamiento_respaldo(numero_usuarios,archivos_por_usuario,tamano_promedio_mb,factor_respaldo)
         st.session_state.historial_calculos.append(calculo_alm)
 
-
-if st.session_state.historial_calculos:
+    if st.session_state.historial_calculos:
     st.write("### Historico de Resultados:")
     df_resultados = pd.DataFrame(st.session_state.historial_calculos)
     st.dataframe(df_resultados, use_container_width=True)
+
 
     st.divider()
     st.markdown("**Simplifica tus procesos, potencia tus resultados.**",text_alignment="center")
