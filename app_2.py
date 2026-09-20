@@ -126,7 +126,7 @@ elif secciones == "Ejercicio 2":
             st.session_state.array_totales = np.array([], dtype=float)
 
     
-    st.subheader("Ingrese aqui el Producto")
+    st.markdown("### Ingrese aqui el Producto")
     
     with st.form("form_registro_producto", clear_on_submit=True):
         col1, col2 = st.columns(2)
@@ -159,7 +159,7 @@ elif secciones == "Ejercicio 2":
         
         st.success(f"Producto '{producto}' agregado correctamente.")
         
-        st.subheader("Productos Registrados")
+        st.markdown("### Productos Registrados")
         
         if len(st.session_state.array_productos) > 0:
             df_registros = pd.DataFrame({
@@ -173,7 +173,7 @@ elif secciones == "Ejercicio 2":
             st.dataframe(df_registros, use_container_width=True)
         
         
-        st.markdown("### Resumen")
+        st.markdown("### Resumen de Compra")
         col_m1, col_m2 = st.columns(2)
         col_m1.metric("Total de Productos Registrados", len(df_registros))
         col_m2.metric("Monto Total", f"S/{df_registros['Total'].sum():,.2f}")
