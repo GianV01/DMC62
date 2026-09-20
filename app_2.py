@@ -60,10 +60,10 @@ if secciones == "Home":
 
 elif secciones == "Ejercicio 1":
     st.title("MOVIMIENTOS FINANCIEROS", text_alignment="center")
-    st.divider()
     st.markdown("En este ejercicio se va a desarollar una planilla para el control de ingresos y gastos diarios o mensuales que puede tener un usuario,
                 con el proposito de mejorar la manera en la administra su dinero")
-                
+    st.divider()
+                  
     
     def mostrar_ejercicio_1():
         st.markdown("Módulo para registrar movimientos financieros y calcular el saldo del flujo de caja.") 
