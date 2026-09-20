@@ -63,6 +63,16 @@ elif secciones == "Ejercicio 1":
     st.markdown("En este ejercicio se desarrollara una app para el ingreso de movimientos categorizados por ingreso o gasto, esto con el fin de ayudar al usuario a tener un mejor control de sus movimientos financieros diarios o mensuales. Al finalizar se mostrará el detalle de sus movimientos en un listado y su saldo final, indicando si aun tiene un salgo a favor o negativo.",text_alignment="justify")
     st.divider()
 
+    def ejercicio_1():
+
+        if"movimientos" not in st.session_state:
+            st.session_state.movimientos = []
+
+        concepto = st.text_input("Concepto:")
+        tipo = st.selectbox("Tipo de Movimiento:" , ["Ingreso","Gasto"])
+        valor = st.number_input("Valor:", min_value=0.0,format="%.2f")
+    
+
     st.subheader(" Elaborado por Giancarlo Valdivia ",text_alignment="center")
 
 elif secciones == "Ejercicio 2":
