@@ -95,11 +95,11 @@ elif secciones == "Ejercicio 1":
             st.metric("Saldo Final", f"S/{saldo_final:,.2f}")
 
             if saldo_final > 0:
-                st.success("El flujo de caja está a favor.")
+                st.success("Tu saldo está a favor.")
             elif saldo_final < 0:
-                st.error("El flujo de caja está en contra.")
+                st.error("Tu saldo está en contra.")
             else:
-                st.success("El flujo de caja está en equilibrio.")
+                st.success("Tu saldo está en equilibrio.")
 
     
     ejercicio_1()
