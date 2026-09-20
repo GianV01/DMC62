@@ -64,9 +64,8 @@ elif secciones == "Ejercicio 1":
     st.divider()
 
     def mostrar_ejercicio_1():
-    
-    # Inicialización de la lista vacía en el estado de la sesión
-    if "movimientos" not in st.session_state:
+        
+        if "movimientos" not in st.session_state:
         st.session_state.movimientos = []
 
     # Widgets para ingresar los datos
