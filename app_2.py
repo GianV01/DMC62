@@ -66,8 +66,8 @@ elif secciones == "Ejercicio 1":
     def ejercicio_1():
         
         if "movimientos" not in st.session_state:
-        st.session_state.movimientos = []
-        
+            st.session_state.movimientos = []
+            
         concepto = st.text_input("Concepto:")
         tipo = st.selectbox("Tipo de movimiento:", ["Ingreso", "Gasto"])
         valor = st.number_input("Valor:", min_value=0.0, format="%.2f")
