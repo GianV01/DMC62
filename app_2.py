@@ -109,7 +109,7 @@ elif secciones == "Ejercicio 1":
     st.markdown("**No ahorres lo que queda después de gastar, gasta lo que queda después de ahorrar**",text_alignment="center")
 
 elif secciones == "Ejercicio 2":
-    st.title("Ejercicio 2 - Inventario de Productos",text_alignment="center")
+    st.title("Ejercicio 2 - Modulo de Ventas",text_alignment="center")
     st.divider()
     st.markdown("En este ejercicio se desarrollará un modulo de ventas de productos en la que se solicitará al operario el ingreso de  "
                 "nombre, categoria, precio, cantidad y total, esto con el fin de tener un calculo exacto de la venta a realizar  "
@@ -118,7 +118,7 @@ elif secciones == "Ejercicio 2":
 
 
     st.divider()
-    st.title("FORMULARIO DE REGISTRO", text_alignment="center")
+    st.markdown("**Lo que no se mide, no se controla; lo que no se controla, no mejora.**",text_alignment="center")
     
 elif secciones == "Ejercicio 3":
     st.title(".....", text_alignment="center")
