@@ -104,7 +104,7 @@ elif secciones == "Ejercicio 1":
     
     ejercicio_1()
 
-    st.markdown("No ahorres lo que queda después de gastar, gasta lo que queda después de ahorrar",text_alignment="center")
+    st.markdown("**No ahorres lo que queda después de gastar, gasta lo que queda después de ahorrar**",text_alignment="center")
 
 elif secciones == "Ejercicio 2":
     st.title("FORMULARIO DE REGISTRO", text_alignment="center")
