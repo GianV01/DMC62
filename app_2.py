@@ -151,7 +151,6 @@ elif secciones == "Ejercicio 2":
         else:
            total = precio * cantidad
             
-            
             st.session_state.array_productos = np.append(st.session_state.arr_productos, producto)
             st.session_state.array_categorias = np.append(st.session_state.arr_categorias, categoria)
             st.session_state.array_precios = np.append(st.session_state.arr_precios, precio)
