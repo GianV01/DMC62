@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import libreria_funciones_proyecto1 as lfp
+import librería_clases_proyecto1 as lcp
 
 st.sidebar.title("Secciones")
 secciones = st.sidebar.selectbox("Selecione el módulo", ["Home", "Ejercicio 1", "Ejercicio 2", "Ejercicio 3", "Ejercicio 4"])
