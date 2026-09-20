@@ -233,9 +233,16 @@ elif secciones == "Ejercicio 3":
     st.markdown("**Simplifica tus procesos, potencia tus resultados.**",text_alignment="center")
 
 else: 
-    st.title(".....", text_alignment="center")
+    st.title(" Ejercicio 3 - Cálculo de Almacenamiento de Respaldo", text_alignment="center")
+    st.divider()
+    st.markdown("Esta herramienta permite calcular el **almacenamiento estimado necesario para respaldos**"  
+                " en función de la cantidad de usuarios, y la cantidad de archivos a respaldar.")
     st.divider()
     
+    
+    
+    st.divider()
+    st.markdown("**Simplifica tus procesos, potencia tus resultados.**",text_alignment="center")
 
 
   
