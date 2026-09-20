@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
+import libreria_funciones_proyecto1 as lfp
 
 st.sidebar.title("Secciones")
 secciones = st.sidebar.selectbox("Selecione el módulo", ["Home", "Ejercicio 1", "Ejercicio 2", "Ejercicio 3", "Ejercicio 4"])
@@ -199,129 +200,15 @@ elif secciones == "Ejercicio 3":
     st.markdown("Esta herramienta permite calcular el **almacenamiento estimado necesario para respaldos**"  
                 " en función de la cantidad de usuarios, archivos y un factor de duplicación.")
     st.divider()
-    
-from libreria_funciones_proyecto1 import calcular_almacenamiento_respaldo
 
-# =========================================================
-# CONFIGURACIÓN DE LA APLICACIÓN STREAMLIT
-# =========================================================
-st.set_page_config(
-    page_title="Calculadora de Almacenamiento de Respaldo",
-    page_icon="💾",
-    layout="wide"
-)
+    numero_usuarios = st.number_input("Número de Usuarios", min_value=1, value=1, step=1)
+    archivos_por_usuario = st.number_input("Archivos por Usuario", min_value=1, value=10,step=5)
+    tamano_promedio_mb = st.number_input("Tamaño Promedio por Archivo (MB)",min_value=0.1,value=5.0, step=0.5)
+    factor_respaldo = st.number_input("Factor de Respaldo", min_value=1.0, value=1.5,step=0.1)
+        
+    btn_ejecutar = st.button("Ejecutar")
 
-# Inicializar el historial en la sesión de Streamlit
-if "historico" not in st.session_state:
-    st.session_state["historico"] = []
 
-# =========================================================
-# INTERFAZ DE USUARIO Y WIDGETS
-# =========================================================
-col_inputs, col_results = st.columns([1, 1], gap="large")
-
-with col_inputs:
-    st.subheader("⚙️ Parámetros de Entrada")
-    
-    # Selector/Indicador de la función activa (Requisito del proyecto)
-    st.selectbox(
-        "Función seleccionada:",
-        options=["calcular_almacenamiento_respaldo"],
-        disabled=True
-    )
-    
-    st.markdown("---")
-    
-    # Widgets para ingresar los parámetros de la función
-    numero_usuarios = st.number_input(
-        "Número de Usuarios",
-        min_value=1,
-        value=10,
-        step=1,
-        help="Cantidad total de usuarios en el sistema."
-    )
-    
-    archivos_por_usuario = st.number_input(
-        "Archivos por Usuario",
-        min_value=1,
-        value=50,
-        step=1,
-        help="Promedio de archivos por cada usuario."
-    )
-    
-    tamano_promedio_mb = st.number_input(
-        "Tamaño Promedio por Archivo (MB)",
-        min_value=0.01,
-        value=5.0,
-        step=0.5,
-        format="%.2f",
-        help="Tamaño medio de un archivo en Megabytes."
-    )
-    
-    factor_respaldo = st.number_input(
-        "Factor de Respaldo",
-        min_value=0.01,
-        value=1.5,
-        step=0.1,
-        format="%.2f",
-        help="Multiplicador para redundancia o versiones."
-    )
-
-    # Botón para ejecutar
-    ejecutar = st.button("🚀 Ejecutar Función", use_container_width=True, type="primary")
-
-with col_results:
-    st.subheader("📊 Resultado del Cálculo")
-    
-    if ejecutar:
-        try:
-            # LLAMADA A LA FUNCIÓN IMPORTADA DESDE LA LIBRERÍA
-            resultado = calcular_almacenamiento_respaldo(
-                numero_usuarios=int(numero_usuarios),
-                archivos_por_usuario=int(archivos_por_usuario),
-                tamano_promedio_mb=float(tamano_promedio_mb),
-                factor_respaldo=float(factor_respaldo)
-            )
-
-            # Mostrar resultado en pantalla
-            st.success("¡Cálculo realizado con éxito!")
-            
-            col_m1, col_m2 = st.columns(2)
-            col_m1.metric("Almacenamiento (MB)", f"{resultado['almacenamiento_estimado_mb']:,.2f} MB")
-            col_m2.metric("Almacenamiento (GB)", f"{resultado['almacenamiento_estimado_gb']:,.2f} GB")
-
-            st.markdown("#### Objeto de retorno (Diccionario JSON)")
-            st.json(resultado)
-
-            # Guardar en la tabla histórica de la sesión
-            st.session_state["historico"].append({
-                "Función": "calcular_almacenamiento_respaldo",
-                "Usuarios": numero_usuarios,
-                "Archivos/Usuario": archivos_por_usuario,
-                "Tamaño Prom. (MB)": tamano_promedio_mb,
-                "Factor Respaldo": factor_respaldo,
-                "Resultado MB": resultado["almacenamiento_estimado_mb"],
-                "Resultado GB": resultado["almacenamiento_estimado_gb"]
-            })
-
-        except Exception as e:
-            st.error(f"❌ Error al ejecutar la función: {e}")
-
-# =========================================================
-# TABLA HISTÓRICA DE RESULTADOS
-# =========================================================
-st.divider()
-st.subheader("📜 Histórico de Resultados")
-
-if st.session_state["historico"]:
-    df_historico = pd.DataFrame(st.session_state["historico"])
-    st.dataframe(df_historico, use_container_width=True)
-
- if st.button("🗑️ Limpiar Histórico"):
-        st.session_state["historico"] = []
-        st.rerun()
- else:
-    st.caption("Aún no se han guardado resultados en esta sesión.")
 
 
     st.divider()
