@@ -233,10 +233,12 @@ elif secciones == "Ejercicio 3":
     st.markdown("**Simplifica tus procesos, potencia tus resultados.**",text_alignment="center")
 
 else: 
-    st.title(" Ejercicio 3 - Cálculo de Almacenamiento de Respaldo", text_alignment="center")
+    st.title(" Ejercicio 3 - Operatividad de Servidor", text_alignment="center")
     st.divider()
-    st.markdown("Esta herramienta permite calcular el **almacenamiento estimado necesario para respaldos**"  
-                " en función de la cantidad de usuarios, y la cantidad de archivos a respaldar.")
+    st.markdown("Este módulo define la entidad del servidor mediante sus atributos clave como:  "  
+                " identificador, tiempos operativos y capacidades de disco.A partir de estas variables,"  
+                " el código calcula dinámicamente el porcentaje de disponibilidad restando el tiempo de caída al total,  "
+                " evalúa la ocupación del espacio y genera un diagnóstico del estado general del sistema.")
     st.divider()
     
     
