@@ -280,42 +280,42 @@ elif secciones == "Ejercicio 3":
             step=0.1
         )
         
-        btn_ejecutar = st.button("Ejecutar Función")
-    
-    if btn_ejecutar:
-        try:
-            resultado = calcular_almacenamiento_respaldo(
+        btn_ejecutar = st.button("Ejecutar")
+        
+        if btn_ejecutar:
+            try:
+                resultado = calcular_almacenamiento_respaldo(
                 numero_usuarios=int(numero_usuarios),
                 archivos_por_usuario=int(archivos_por_usuario),
                 tamano_promedio_mb=float(tamano_promedio_mb),
                 factor_respaldo=float(factor_respaldo)
-            )
-            st.write(f"✅ **Resultado para '{etiqueta}' ({funcion_seleccionada}):**")
-            st.write(f"- **Almacenamiento Necesario (MB):** {resultado['almacenamiento_estimado_mb']:,} MB")
-            st.write(f"- **Almacenamiento Necesario (GB):** {resultado['almacenamiento_estimado_gb']:,} GB")
-            
-            nuevo_registro = pd.DataFrame([{
-                "Etiqueta": etiqueta,
-                "Tipo Respaldo": funcion_seleccionada,
-                "N° Usuarios": numero_usuarios,
-                "Archivos/Usuario": archivos_por_usuario,
-                "Tamaño (MB)": tamano_promedio_mb,
-                "Factor": factor_respaldo,
-                "Estimado (MB)": resultado["almacenamiento_estimado_mb"],
-                "Estimado (GB)": resultado["almacenamiento_estimado_gb"]
-            }])
-            
-            st.session_state.historial_respaldos = pd.concat(
-                [st.session_state.historial_respaldos, nuevo_registro], 
-                ignore_index=True
-            )
-        except ValueError as e:
-            st.write(f"⚠️ **Error en la validación:** {e}")
-    
-    st.write("### Histórico de Resultados Obtenidos")
-    
-    if not st.session_state.historial_respaldos.empty:
-        st.dataframe(st.session_state.historial_respaldos, use_container_width=True)
+                )
+                st.write(f"✅ **Resultado para '{etiqueta}' ({funcion_seleccionada}):**")
+                st.write(f"- **Almacenamiento Necesario (MB):** {resultado['almacenamiento_estimado_mb']:,} MB")
+                st.write(f"- **Almacenamiento Necesario (GB):** {resultado['almacenamiento_estimado_gb']:,} GB")
+                
+                nuevo_registro = pd.DataFrame([{
+                    "Etiqueta": etiqueta,
+                    "Tipo Respaldo": funcion_seleccionada,
+                    "N° Usuarios": numero_usuarios,
+                    "Archivos/Usuario": archivos_por_usuario,
+                    "Tamaño (MB)": tamano_promedio_mb,
+                    "Factor": factor_respaldo,
+                    "Estimado (MB)": resultado["almacenamiento_estimado_mb"],
+                    "Estimado (GB)": resultado["almacenamiento_estimado_gb"]
+                }])
+                
+                st.session_state.historial_respaldos = pd.concat(
+                    [st.session_state.historial_respaldos, nuevo_registro], 
+                    ignore_index=True
+                )
+            except ValueError as e:
+                st.write(f"⚠️ **Error en la validación:** {e}")
+                
+        st.write("### Histórico de Resultados Obtenidos")
+        
+        if not st.session_state.historial_respaldos.empty:
+            st.dataframe(st.session_state.historial_respaldos, use_container_width=True)
     else:
         st.write("Aún no se han realizado cálculos en esta sesión.")
         
