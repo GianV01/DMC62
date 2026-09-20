@@ -98,14 +98,14 @@ elif secciones == "Ejercicio 1":
                     st.metric("Total Gastos", f"S/{total_gastos:,.2f}")
                     st.metric("Saldo Final", f"S/{saldo_final:,.2f}")
                         
-                        if saldo_final > 0:
-                            st.success("El flujo de caja está a favor.")
-                        elif saldo_final < 0:
-                            st.error("El flujo de caja está en contra.")
-                        else:
-                            st.success("El flujo de caja está en equilibrio.")
+                    if saldo_final > 0:
+                        st.success("El flujo de caja está a favor.")
+                    elif saldo_final < 0:
+                        st.error("El flujo de caja está en contra.")
+                    else:
+                        st.success("El flujo de caja está en equilibrio.")
                             
-                            mostrar_ejercicio_1()
+                        mostrar_ejercicio_1()
         
 elif secciones == "Ejercicio 2":
     st.title("FORMULARIO DE REGISTRO", text_alignment="center")
