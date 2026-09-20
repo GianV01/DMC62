@@ -63,7 +63,8 @@ elif secciones == "Ejercicio 1":
     st.markdown("En este ejercicio se va a desarollar una planilla para el control de ingresos y gastos diarios o mensuales que puede tener un usuario, con el proposito de mejorar la manera en la **administra su dinero**",text_alignment="justify")
     st.divider()
 
-    def ejercicio_1():
+    def mostrar_ejercicio_1():
+        
         if "movimientos" not in st.session_state:
             st.session_state.movimientos = []
 
@@ -71,15 +72,17 @@ elif secciones == "Ejercicio 1":
     concepto = st.text_input("Concepto:")
     tipo = st.selectbox("Tipo de movimiento:", ["Ingreso", "Gasto"])
     valor = st.number_input("Valor:", min_value=0.0, format="%.2f")
+
     
-    if st.button("Agregar Movimiento"):
+    if st.button("Agregar movimiento"):
         if concepto.strip() != "" and valor > 0:
             st.session_state.movimientos.append(
-                {"Concepto": concepto, "Tipo": tipo, "Valor": valor}
+                {"concepto": concepto, "tipo": tipo, "valor": valor}
             )
-            
-            if st.session_state.movimientos:
-                st.dataframe(st.session_state.movimientos)
+
+    
+    if st.session_state.movimientos:
+        st.dataframe(st.session_state.movimientos)
 
         
         total_ingresos = sum(
@@ -94,7 +97,7 @@ elif secciones == "Ejercicio 1":
         )
         saldo_final = total_ingresos - total_gastos
 
-        
+       
         st.metric("Total Ingresos", f"S/{total_ingresos:,.2f}")
         st.metric("Total Gastos", f"S/{total_gastos:,.2f}")
         st.metric("Saldo Final", f"S/{saldo_final:,.2f}")
@@ -107,7 +110,7 @@ elif secciones == "Ejercicio 1":
         else:
             st.success("El flujo de caja está en equilibrio.")
             
-            ejercicio_1()
+            mostrar_ejercicio_1()
         
 elif secciones == "Ejercicio 2":
     st.title("FORMULARIO DE REGISTRO", text_alignment="center")
