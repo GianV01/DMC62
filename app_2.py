@@ -294,7 +294,6 @@ elif secciones == "Ejercicio 3":
             st.write(f"- **Almacenamiento Necesario (MB):** {resultado['almacenamiento_estimado_mb']:,} MB")
             st.write(f"- **Almacenamiento Necesario (GB):** {resultado['almacenamiento_estimado_gb']:,} GB")
 
-            
             nuevo_registro = pd.DataFrame([{
                 "Etiqueta": etiqueta,
                 "Tipo Respaldo": funcion_seleccionada,
