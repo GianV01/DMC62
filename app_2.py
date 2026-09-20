@@ -71,14 +71,14 @@ elif secciones == "Ejercicio 1":
             concepto = st.text_input("Concepto:")
             tipo = st.selectbox("Tipo de movimiento:", ["Ingreso", "Gasto"])
             valor = st.number_input("Valor:", min_value=0.0, format="%.2f")
-
-    if st.button("Agregar Movimiento"):
-        if concepto.strip() != "" and valor > 0:
+            
+        if st.button("Agregar Movimiento"):
+            if concepto.strip() != "" and valor > 0:
             st.session_state.movimientos.append(
                 {"concepto": concepto, "tipo": tipo, "valor": valor}
             )
-
-    if st.session_state.movimientos:
+            
+            if st.session_state.movimientos:
         st.dataframe(st.session_state.movimientos)
 
         total_ingresos = sum(
