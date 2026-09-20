@@ -126,7 +126,7 @@ elif secciones == "Ejercicio 2":
             st.session_state.array_totales = np.array([], dtype=float)
 
     
-    st.markdown("### Ingrese aqui el Producto")
+    st.markdown("### Ingrese el Producto")
     
     with st.form("form_registro_producto", clear_on_submit=True):
         col1, col2 = st.columns(2)
