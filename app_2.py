@@ -223,8 +223,7 @@ elif secciones == "Ejercicio 3":
             "almacenamiento_estimado_gb": round(almacenamiento_gb, 2)
         }
         
-        def ejercicio_3(): 
-        
+    def ejercicio_3():
         if "historial_respaldos" not in st.session_state:
             st.session_state.historial_respaldos = pd.DataFrame(columns=[
                 "Etiqueta", 
