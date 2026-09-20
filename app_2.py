@@ -58,6 +58,10 @@ if secciones == "Home":
 
     st.subheader(" 2026 ",text_alignment="center")
 elif secciones == "Ejercicio 1":
+    st.title("Ejercicio 1 - Movimientos Diaros")
+    st.divider()
+    st.markdown("En este ejercicio se desarrollara una app para el ingreso de movimientos categorizados por ingreso o gasto, esto con el fin de ayudar al usuario a tener un mejor control de sus movimientos financieros diarios o mensuales.",text_alignment="justify")
+    st.divider()
 
     st.subheader(" Elaborado por Giancarlo Valdivia ",text_alignment="center")
 
