@@ -75,9 +75,9 @@ elif secciones == "Ejercicio 1":
     if st.button("Agregar Movimiento"):
         if concepto.strip() != "" and valor > 0:
             st.session_state.vomimiento.append({"Concepto": concepto, "Tipo": tipo, "Valor": valor})
-
-    if st.session_state.movimientos:
-        st.dataframe(st.session_state.movimientos)
+            
+            if st.session_state.movimientos:
+                st.dataframe(st.session_state.movimientos)
 
         
         total_ingresos = sum(
