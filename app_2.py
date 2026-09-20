@@ -320,7 +320,7 @@ if st.session_state["historico"]:
     if st.button("🗑️ Limpiar Histórico"):
         st.session_state["historico"] = []
         st.rerun()
-else:
+    else:
     st.caption("Aún no se han guardado resultados en esta sesión.")
 
 
