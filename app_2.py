@@ -201,10 +201,14 @@ elif secciones == "Ejercicio 3":
                 " en función de la cantidad de usuarios, archivos y un factor de duplicación.")
     st.divider()
 
-    numero_usuarios = st.number_input("Número de Usuarios", min_value=1, value=1, step=1)
-    archivos_por_usuario = st.number_input("Archivos por Usuario", min_value=1, value=10,step=5)
-    tamano_promedio_mb = st.number_input("Tamaño Promedio por Archivo (MB)",min_value=0.1,value=5.0, step=0.5)
-    factor_respaldo = st.number_input("Factor de Respaldo", min_value=1.0, value=1.5,step=0.1)
+    col1, col2 = st.columns(2)
+    with col1:
+        numero_usuarios = st.number_input("Número de Usuarios",min_value=1,value=1,step=1)
+        archivos_por_usuario = st.number_input("Archivos por Usuario",min_value=1,value=10,step=5)
+        
+    with col2:
+        tamano_promedio_mb = st.number_input("Tamaño Promedio por Archivo (MB)", min_value=0.1,value=5.0,step=0.5)
+        factor_respaldo = st.number_input("Factor de Respaldo",min_value=1.0,value=1.5,step=0.1)
         
     btn_ejecutar = st.button("Ejecutar")
 
