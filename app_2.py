@@ -77,7 +77,7 @@ elif secciones == "Ejercicio 1":
     if st.button("Agregar Movimiento"):
         if concepto.strip() != "" and valor > 0:
             st.session_state.movimientos.append(
-                {"concepto": Concepto, "tipo": Tipo, "valor": Valor}
+                {"Concepto": concepto, "Tipo": tipo, "Valor": valor}
             )
 
     
