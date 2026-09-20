@@ -62,46 +62,47 @@ elif secciones == "Ejercicio 1":
     st.title("MOVIMIENTOS FINANCIEROS", text_alignment="center")
     st.markdown("En este ejercicio se va a desarollar una planilla para el control de ingresos y gastos diarios o mensuales que puede tener un usuario, con el proposito de mejorar la manera en la **administra su dinero**",text_alignment="justify")
     st.divider()
+
+def ejercicio_1():
                   
-# Inicialización de la lista vacía en el estado de la sesión
     if "movimientos" not in st.session_state:
         st.session_state.movimientos = []
 
-    # Widgets para ingresar los datos
+    
     concepto = st.text_input("Concepto:")
     tipo = st.selectbox("Tipo de movimiento:", ["Ingreso", "Gasto"])
     valor = st.number_input("Valor:", min_value=0.0, format="%.2f")
 
-    # Botón para agregar movimientos
-    if st.button("Agregar movimiento"):
+   
+    if st.button("Agregar Movimiento"):
         if concepto.strip() != "" and valor > 0:
             st.session_state.movimientos.append(
                 {"concepto": concepto, "tipo": tipo, "valor": valor}
             )
 
-    # Mostrar la tabla de movimientos si hay registros
+    
     if st.session_state.movimientos:
         st.dataframe(st.session_state.movimientos)
 
-        # Cálculo de los resultados del flujo de caja
+        
         total_ingresos = sum(
-            m["valor"]
-            for m in st.session_state.movimientos
-            if m["tipo"] == "Ingreso"
+            mov["valor"]
+            for mov in st.session_state.movimientos
+            if mov["tipo"] == "Ingreso"
         )
         total_gastos = sum(
-            m["valor"]
-            for m in st.session_state.movimientos
-            if m["tipo"] == "Gasto"
+            mov["valor"]
+            for mov in st.session_state.movimientos
+            if mov["tipo"] == "Gasto"
         )
         saldo_final = total_ingresos - total_gastos
 
         # Resultado final del flujo de caja usando las métricas recomendadas
-        st.metric("Total Ingresos", f"${total_ingresos:,.2f}")
-        st.metric("Total Gastos", f"${total_gastos:,.2f}")
-        st.metric("Saldo Final", f"${saldo_final:,.2f}")
+        st.metric("Total Ingresos", f"S/{total_ingresos:,.2f}")
+        st.metric("Total Gastos", f"S/{total_gastos:,.2f}")
+        st.metric("Saldo Final", f"s/{saldo_final:,.2f}")
 
-        # Indicador de estado del flujo de caja
+        
         if saldo_final > 0:
             st.success("El flujo de caja está a favor.")
         elif saldo_final < 0:
@@ -109,7 +110,7 @@ elif secciones == "Ejercicio 1":
         else:
             st.success("El flujo de caja está en equilibrio.")
             
-            mostrar_ejercicio_1()
+            ejercicio_1()
 
 elif secciones == "Ejercicio 2":
     st.title("FORMULARIO DE REGISTRO", text_alignment="center")
