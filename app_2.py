@@ -111,7 +111,7 @@ elif secciones == "Ejercicio 1":
 
 
 mostrar_ejercicio_1()
-     
+
 elif secciones == "Ejercicio 2":
     st.title("FORMULARIO DE REGISTRO", text_alignment="center")
     st.divider()
