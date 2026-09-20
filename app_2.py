@@ -53,7 +53,7 @@ if secciones == "Home":
     st.subheader("Giancarlo Esteban Valdivia Asencio",text_alignment="center")
     st.divider()
 
-    st.markdown("Bachiller en la carrera de Ingenieria de Sistemas e Informatica, egresado de la universidad Tecnologica del Perú en el año 2025 cuento con 4 años de experiencia laboral entre practicas pre-profesionales, practicas profesionales y puestos laborales directos, actualmente me encuentro laborando en la empresa Molitalia, y mi interesa seguir formandome en la administracion de data.",text_alignment="justify")
+    st.markdown("Bachiller en la carrera de Ingenieria de Sistemas e Informatica, egresado de la universidad Tecnologica del Perú en el año 2025 cuento con 4 años de experiencia laboral entre practicas pre-profesionales,practicas profesionales y puestos laborales directos, actualmente me encuentro laborando en la empresa Molitalia, y mi interesa seguir formandome en la administracion de data.",text_alignment="justify")
     st.divider()
 
     st.subheader(" 2026 ",text_alignment="center")
@@ -61,6 +61,10 @@ if secciones == "Home":
 elif secciones == "Ejercicio 1":
     st.title("MOVIMIENTOS FINANCIEROS", text_alignment="center")
     st.divider()
+    st.markdown("En este ejercicio se va a desarollar una planilla para el control de ingresos y gastos diarios o mensuales que puede tener un usuario,
+                con el proposito de mejorar la manera en la administra su dinero")
+                
+    
     def mostrar_ejercicio_1():
         st.markdown("Módulo para registrar movimientos financieros y calcular el saldo del flujo de caja.") 
     # Inicialización de la lista vacía en el estado de la sesión
