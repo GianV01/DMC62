@@ -198,7 +198,7 @@ elif secciones == "Ejercicio 3":
     st.title(" Ejercicio 3 - Cálculo de Almacenamiento de Respaldo", text_alignment="center")
     st.divider()
     st.markdown("Esta herramienta permite calcular el **almacenamiento estimado necesario para respaldos**"  
-                " en función de la cantidad de usuarios, archivos y un factor de duplicación.")
+                " en función de la cantidad de usuarios, y la cantidad de archivos a respaldar.")
     st.divider()
 
     col1, col2 = st.columns(2)
