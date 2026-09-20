@@ -1,4 +1,6 @@
 import streamlit as st
+import numpy as np
+import pandas as pd
 
 st.sidebar.title("Secciones")
 secciones = st.sidebar.selectbox("Selecione el módulo", ["Home", "Ejercicio 1", "Ejercicio 2", "Ejercicio 3", "Ejercicio 4"])
@@ -103,13 +105,21 @@ elif secciones == "Ejercicio 1":
 
     
     ejercicio_1()
-
+    st.divider()
     st.markdown("**No ahorres lo que queda después de gastar, gasta lo que queda después de ahorrar**",text_alignment="center")
 
 elif secciones == "Ejercicio 2":
-    st.title("FORMULARIO DE REGISTRO", text_alignment="center")
+    st.title("Ejercicio 2 - Inventario de Productos",text_alignment="center")
+    st.divider()
+    st.markdown("En este ejercicio se desarrollará un modulo de ventas de productos en la que se solicitará al operario el ingreso de  "
+                "nombre, categoria, precio, cantidad y total, esto con el fin de tener un calculo exacto de la venta a realizar  "
+                "Al finalizar se mostrará el detalle de la compra y el monto total a pagar por parte del cliente.",text_alignment="justify")
     st.divider()
 
+
+    st.divider()
+    st.title("FORMULARIO DE REGISTRO", text_alignment="center")
+    
 elif secciones == "Ejercicio 3":
     st.title(".....", text_alignment="center")
     st.divider()
