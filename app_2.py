@@ -309,8 +309,8 @@ elif secciones == "Ejercicio 3":
                     [st.session_state.historial_respaldos, nuevo_registro], 
                     ignore_index=True
                 )
-            except ValueError as e:
-                st.write(f"⚠️ **Error en la validación:** {e}")
+        except ValueError as e:
+            st.write(f"⚠️ **Error en la validación:** {e}")
                 
         st.write("### Histórico de Resultados Obtenidos")
         
