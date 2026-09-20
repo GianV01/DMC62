@@ -90,9 +90,9 @@ elif secciones == "Ejercicio 1":
             )
             saldo_final = total_ingresos - total_gastos
 
-            st.metric("Total Ingresos", f"${total_ingresos:,.2f}")
-            st.metric("Total Gastos", f"${total_gastos:,.2f}")
-            st.metric("Saldo Final", f"${saldo_final:,.2f}")
+            st.metric("Total Ingresos", f"S/{total_ingresos:,.2f}")
+            st.metric("Total Gastos", f"S/{total_gastos:,.2f}")
+            st.metric("Saldo Final", f"S/{saldo_final:,.2f}")
 
             if saldo_final > 0:
                 st.success("El flujo de caja está a favor.")
@@ -101,10 +101,10 @@ elif secciones == "Ejercicio 1":
             else:
                 st.success("El flujo de caja está en equilibrio.")
 
-    # Corrección clave: llamar a ejercicio_1() en vez de mostrar_ejericio_1()
+    
     ejercicio_1()
 
-    st.subheader(" Elaborado por Giancarlo Valdivia ",text_alignment="center")
+    st.markddown("No ahorres lo que queda después de gastar, gasta lo que queda después de ahorrar",text_alignment="center")
 
 elif secciones == "Ejercicio 2":
     st.title("FORMULARIO DE REGISTRO", text_alignment="center")
