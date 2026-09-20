@@ -316,8 +316,8 @@ elif secciones == "Ejercicio 3":
         
         if not st.session_state.historial_respaldos.empty:
             st.dataframe(st.session_state.historial_respaldos, use_container_width=True)
-    else:
-        st.write("Aún no se han realizado cálculos en esta sesión.")
+        else:
+            st.write("Aún no se han realizado cálculos en esta sesión.")
         
         if __name__ == "__main__":
             ejercicio_3()
