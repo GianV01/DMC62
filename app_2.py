@@ -79,7 +79,7 @@ elif secciones == "Ejercicio 1":
             )
             
             if st.session_state.movimientos:
-        st.dataframe(st.session_state.movimientos)
+                st.dataframe(st.session_state.movimientos)
 
         total_ingresos = sum(
             mov["valor"]
