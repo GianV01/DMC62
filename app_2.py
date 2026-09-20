@@ -116,6 +116,79 @@ elif secciones == "Ejercicio 2":
                 "Al finalizar se mostrará el detalle de la compra y el monto total a pagar por parte del cliente.",text_alignment="justify")
     st.divider()
 
+    def ejercicio_2():
+        
+    
+    if "array_productos" not in st.session_state:
+        st.session_state.array_productos = np.array([], dtype=object)
+        st.session_state.array_categorias = np.array([], dtype=object)
+        st.session_state.array_precios = np.array([], dtype=float)
+        st.session_state.array_cantidades = np.array([], dtype=int)
+        st.session_state.array_totales = np.array([], dtype=float)
+
+    # Formulario de ingreso de datos con widgets
+    st.subheader("Ingrese aqui la Venta")
+    
+    with st.form("form_registro_producto", clear_on_submit=True):
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            producto = st.text_input("Nombre del Producto")
+            categoria = st.selectbox(
+                "Categoría", 
+                ["Electrónica", "Abarrotes", "Ropa", "Hogar", "Otros"]
+            )
+        
+        with col2:
+            precio = st.number_input("Precio (S/)", min_value=0.0, value=0.0, step=0.50)
+            cantidad = st.number_input("Cantidad", min_value=1, value=1, step=1)
+            
+        btn_agregar = st.form_submit_button("Agregar Producto")
+
+    
+    if btn_agregar:
+        if producto.strip() == "":
+            st.warning("Por favor, ingresa el nombre del producto.")
+        else:
+           total = precio * cantidad
+            
+            
+            st.session_state.array_productos = np.append(st.session_state.arr_productos, producto)
+            st.session_state.array_categorias = np.append(st.session_state.arr_categorias, categoria)
+            st.session_state.array_precios = np.append(st.session_state.arr_precios, precio)
+            st.session_state.array_cantidades = np.append(st.session_state.arr_cantidades, cantidad)
+            st.session_state.array_totales = np.append(st.session_state.arr_totales, total)
+            
+            st.success(f"Producto '{producto}' agregado correctamente.")
+
+    
+    st.subheader("Productos Registrados")
+    
+    if len(st.session_state.array_productos) > 0:
+       
+        df_registros = pd.DataFrame({
+            "Producto": st.session_state.array_productos,
+            "Categoría": st.session_state.array_categorias,
+            "Precio Unitario": st.session_state.array_precios,
+            "Cantidad": st.session_state.array_cantidades,
+            "Total": st.session_state.array_totales
+        })
+        
+        
+        st.dataframe(df_registros, use_container_width=True)
+        
+        
+        st.markdown("### Resumen")
+        col_m1, col_m2 = st.columns(2)
+        col_m1.metric("Total de Productos Registrados", len(df_registros))
+        col_m2.metric("Monto Total", f"S/{df_registros['Total'].sum():,.2f}")
+    else:
+        st.info("Aún no se han agregado registros. Completa el formulario arriba para empezar.")
+
+
+if __name__ == "__main__":
+    ejercicio_2()
+
 
     st.divider()
     st.markdown("**Lo que no se mide, no se controla; lo que no se controla, no mejora.**",text_alignment="center")
