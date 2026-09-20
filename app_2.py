@@ -185,10 +185,9 @@ elif secciones == "Ejercicio 2":
         col_m2.metric("Monto Total", f"S/{df_registros['Total'].sum():,.2f}")
     else:
         st.info("Aún no se han agregado registros. Completa el formulario arriba para empezar.")
-
-
-if __name__ == "__main__":
-    ejercicio_2()
+        
+        if __name__ == "__main__":
+            ejercicio_2()
 
 
     st.divider()
