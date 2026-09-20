@@ -224,7 +224,7 @@ elif secciones == "Ejercicio 3":
 
 
 if st.session_state.historial_calculos:
-    st.write("### Resultados acumulados:")
+    st.write("### Historico de Resultados:")
     df_resultados = pd.DataFrame(st.session_state.historial_calculos)
     st.dataframe(df_resultados, use_container_width=True)
 
