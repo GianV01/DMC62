@@ -77,7 +77,7 @@ elif secciones == "Ejercicio 1":
     if st.button("Agregar Movimiento"):
         if concepto.strip() != "" and valor > 0:
             st.session_state.movimientos.append(
-                {"concepto": concepto, "tipo": tipo, "valor": valor}
+                {"concepto": Concepto, "tipo": Tipo, "valor": Valor}
             )
 
     
@@ -98,9 +98,9 @@ elif secciones == "Ejercicio 1":
         saldo_final = total_ingresos - total_gastos
 
         
-        st.metric("Total Ingresos", f"${total_ingresos:,.2f}")
-        st.metric("Total Gastos", f"${total_gastos:,.2f}")
-        st.metric("Saldo Final", f"${saldo_final:,.2f}")
+        st.metric("Total Ingresos", f"S/{total_ingresos:,.2f}")
+        st.metric("Total Gastos", f"S/{total_gastos:,.2f}")
+        st.metric("Saldo Final", f"S/{saldo_final:,.2f}")
 
         
         if saldo_final > 0:
