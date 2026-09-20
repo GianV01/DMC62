@@ -212,7 +212,7 @@ elif secciones == "Ejercicio 3":
         
     btn_ejecutar = st.button("Ejecutar")
 
-    culculo_alm = lfp.calcular_almacenamiento_respaldo(numero_usuarios, archivos_por_usuario, tamano_promedio_mb, factor_respaldo)
+    calculo_alm = lfp.calcular_almacenamiento_respaldo(numero_usuarios,archivos_por_usuario,tamano_promedio_mb,factor_respaldo)
     st.write("El calculo de almacenamiento de respaldo es el siguiente:", calculo_alm)
 
 
