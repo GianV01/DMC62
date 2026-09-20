@@ -102,9 +102,8 @@ elif secciones == "Ejercicio 1":
             st.error("El flujo de caja está en contra.")
         else:
             st.success("El flujo de caja está en equilibrio.")
-        
-        
-    
+            
+            mostrar_ejericio_1() 
 
     st.subheader(" Elaborado por Giancarlo Valdivia ",text_alignment="center")
 
