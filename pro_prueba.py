@@ -8,15 +8,15 @@ import librería_clases_proyecto1 as lcp
 # 1. Configuración inicial
 st.set_page_config(page_title="Proyecto 1 - Aplicación", page_icon="🚀", layout="wide")
 
-# 2. Nueva paleta de colores
-COLOR_FONDO_PRINCIPAL = "#353535" # Gris Oscuro
-COLOR_FONDO_SECUNDARIO = "#284B63" # Azul Pizarra Oscuro
-COLOR_TEXTO_CLARO = "#FFFFFF" # Blanco
+# 2. Paleta de colores ajustada para Fondo Blanco (Light Mode)
+COLOR_FONDO_PRINCIPAL = "#FFFFFF" # Blanco
+COLOR_TEXTO_PRINCIPAL = "#353535" # Gris Oscuro
 COLOR_ACENTO_PRINCIPAL = "#3C6E71" # Verde Azulado (Teal)
-COLOR_ACENTO_SECUNDARIO = "#D9D9D9" # Gris Claro
+COLOR_ACENTO_SECUNDARIO = "#284B63" # Azul Pizarra Oscuro
+COLOR_BORDES_FONDOS = "#D9D9D9" # Gris Claro
 
-# 3. Función auxiliar para centralizar textos
-def texto_centrado(texto, etiqueta="h1", color=COLOR_TEXTO_CLARO, size=None, bold=False):
+# 3. Función auxiliar para centralizar textos (Por defecto ahora usa texto oscuro)
+def texto_centrado(texto, etiqueta="h1", color=COLOR_TEXTO_PRINCIPAL, size=None, bold=False):
     size_style = f"font-size: {size};" if size else ""
     bold_style = "font-weight: bold;" if bold else ""
     html = f"""
@@ -35,37 +35,52 @@ def inyectar_estilos():
     /* Fondos y Texto General */
     .stApp {{
         background-color: {COLOR_FONDO_PRINCIPAL};
-        color: {COLOR_TEXTO_CLARO};
+        color: {COLOR_TEXTO_PRINCIPAL};
     }}
     
     [data-testid="stSidebar"] {{
-        background-color: {COLOR_FONDO_SECUNDARIO} !important;
-        border-right: 1px solid {COLOR_ACENTO_SECUNDARIO};
+        background-color: {COLOR_FONDO_PRINCIPAL} !important;
+        border-right: 1px solid {COLOR_BORDES_FONDOS};
+    }}
+    
+    [data-testid="stSidebar"] * {{
+        color: {COLOR_TEXTO_PRINCIPAL} !important;
     }}
 
-    /* Estilización innovadora del menú de navegación (Radio Buttons) */
+    /* Estilización innovadora del menú de navegación (Radio Buttons con Hover de Marco) */
     div.stRadio > div[role="radiogroup"] {{
         gap: 15px;
+        padding: 10px;
     }}
     div.stRadio > div[role="radiogroup"] > label {{
         background-color: {COLOR_FONDO_PRINCIPAL};
-        color: {COLOR_TEXTO_CLARO} !important;
+        color: {COLOR_TEXTO_PRINCIPAL} !important;
         padding: 12px 20px;
-        border-radius: 10px;
-        border: 2px solid transparent;
+        border-radius: 8px;
+        border: 2px solid {COLOR_BORDES_FONDOS}; /* Marco inicial sutil */
         transition: all 0.3s ease;
         cursor: pointer;
     }}
+    
+    /* INTERACCIÓN AL PASAR EL MOUSE (Hover) */
     div.stRadio > div[role="radiogroup"] > label:hover {{
-        border-color: {COLOR_ACENTO_PRINCIPAL};
-        transform: translateX(5px);
+        border-color: {COLOR_ACENTO_PRINCIPAL} !important; /* Resalta el marco */
+        box-shadow: 0 4px 10px rgba(60, 110, 113, 0.15); /* Sombra suave */
+        transform: translateY(-2px); /* Efecto de elevación */
     }}
+    
     div.stRadio > div[role="radiogroup"] > label[data-checked="true"] {{
         background-color: {COLOR_ACENTO_PRINCIPAL};
-        color: {COLOR_TEXTO_CLARO} !important;
+        color: {COLOR_FONDO_PRINCIPAL} !important;
         font-weight: bold;
-        border-color: {COLOR_TEXTO_CLARO};
+        border-color: {COLOR_ACENTO_PRINCIPAL} !important;
+        box-shadow: 0 4px 10px rgba(60, 110, 113, 0.3);
     }}
+    
+    div.stRadio > div[role="radiogroup"] > label[data-checked="true"] p {{
+        color: {COLOR_FONDO_PRINCIPAL} !important;
+    }}
+
     /* Ocultar el círculo nativo del radio para que parezcan botones */
     div.stRadio > div[role="radiogroup"] > label > div:first-child {{
         display: none; 
@@ -76,9 +91,9 @@ def inyectar_estilos():
     input[type="text"], 
     input[type="number"],
     div[data-baseweb="base-input"] {{
-        background-color: {COLOR_FONDO_SECUNDARIO} !important;
-        color: {COLOR_TEXTO_CLARO} !important;
-        border: 1px solid {COLOR_ACENTO_SECUNDARIO} !important;
+        background-color: #F8F9FA !important;
+        color: {COLOR_TEXTO_PRINCIPAL} !important;
+        border: 1px solid {COLOR_BORDES_FONDOS} !important;
         border-radius: 8px !important;
         transition: all 0.3s ease !important;
     }}
@@ -87,38 +102,38 @@ def inyectar_estilos():
     input[type="text"]:focus, 
     input[type="number"]:focus {{
         border-color: {COLOR_ACENTO_PRINCIPAL} !important;
-        box-shadow: 0 0 10px rgba(60, 110, 113, 0.5) !important;
+        box-shadow: 0 0 8px rgba(60, 110, 113, 0.3) !important;
     }}
 
     /* Botones */
     .stButton > button, button[kind="secondaryFormSubmit"] {{
         background-color: {COLOR_ACENTO_PRINCIPAL} !important;
-        color: {COLOR_TEXTO_CLARO} !important;
+        color: {COLOR_FONDO_PRINCIPAL} !important;
         font-weight: bold !important;
-        border: 2px solid transparent !important;
+        border: 2px solid {COLOR_ACENTO_PRINCIPAL} !important;
         border-radius: 8px !important;
         padding: 0.5rem 1.5rem !important;
         transition: all 0.3s ease !important;
     }}
     .stButton > button:hover, button[kind="secondaryFormSubmit"]:hover {{
-        background-color: {COLOR_FONDO_SECUNDARIO} !important;
-        color: {COLOR_TEXTO_CLARO} !important;
-        border-color: {COLOR_TEXTO_CLARO} !important;
+        background-color: {COLOR_FONDO_PRINCIPAL} !important;
+        color: {COLOR_ACENTO_PRINCIPAL} !important;
         transform: translateY(-2px);
     }}
 
     /* Tarjetas/Contenedores */
     [data-testid="stVerticalBlockBorderWrapper"] {{
         border-radius: 12px !important;
-        border: 1px solid {COLOR_ACENTO_SECUNDARIO} !important;
-        background-color: rgba(40, 75, 99, 0.4) !important;
+        border: 1px solid {COLOR_BORDES_FONDOS} !important;
+        background-color: #F9F9F9 !important;
         padding: 1rem;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.02);
     }}
 
     /* Separadores y Métricas */
-    hr {{ border-color: {COLOR_ACENTO_SECUNDARIO} !important; opacity: 0.4; }}
+    hr {{ border-color: {COLOR_BORDES_FONDOS} !important; opacity: 0.8; }}
     [data-testid="stMetricValue"] {{ color: {COLOR_ACENTO_PRINCIPAL} !important; font-weight: bold; }}
-    [data-testid="stMetricLabel"] {{ color: {COLOR_ACENTO_SECUNDARIO} !important; }}
+    [data-testid="stMetricLabel"] {{ color: {COLOR_TEXTO_PRINCIPAL} !important; font-weight: 600; }}
     </style>
     """
     st.markdown(css, unsafe_allow_html=True)
@@ -126,7 +141,7 @@ def inyectar_estilos():
 inyectar_estilos()
 
 # 5. Barra Lateral Mejorada
-st.sidebar.markdown(f"<h2 style='color: {COLOR_TEXTO_CLARO}; text-align: center;'>Navegación</h2>", unsafe_allow_html=True)
+st.sidebar.markdown(f"<h2 style='color: {COLOR_ACENTO_SECUNDARIO}; text-align: center;'>Navegación</h2>", unsafe_allow_html=True)
 st.sidebar.markdown("<br>", unsafe_allow_html=True)
 
 secciones = st.sidebar.radio(
@@ -136,10 +151,10 @@ secciones = st.sidebar.radio(
 )
 
 if secciones == "🏠 Home":
-    texto_centrado("PROYECTO 1 – APLICACIÓN EN STREAMLIT", "h1", COLOR_TEXTO_CLARO, "2.5rem", bold=True)
+    texto_centrado("PROYECTO 1 – APLICACIÓN EN STREAMLIT", "h1", COLOR_ACENTO_SECUNDARIO, "2.5rem", bold=True)
     st.divider()
     
-    # 6. Animación JS ajustada a la nueva paleta
+    # 6. Animación JS ajustada para fondo blanco
     banner_html = f"""
     <!DOCTYPE html>
     <html>
@@ -157,7 +172,7 @@ if secciones == "🏠 Home":
             let width, height;
             let particles = [];
             
-            const colors = ['{COLOR_ACENTO_PRINCIPAL}', '{COLOR_ACENTO_SECUNDARIO}', '{COLOR_FONDO_SECUNDARIO}'];
+            const colors = ['{COLOR_ACENTO_PRINCIPAL}', '{COLOR_ACENTO_SECUNDARIO}', '{COLOR_TEXTO_PRINCIPAL}'];
 
             function resize() {{
                 width = canvas.width = window.innerWidth;
@@ -220,7 +235,7 @@ if secciones == "🏠 Home":
     texto_centrado("Módulo 1 – Python Fundamentals", "h3", COLOR_ACENTO_PRINCIPAL, bold=True)
     st.divider()
 
-    texto_centrado("Se va a desarrollar una aplicación interactiva haciendo uso de las plataformas GitHub y Streamlit, integrando los contenidos revisados en el módulo.", "p", COLOR_TEXTO_CLARO)
+    texto_centrado("Se va a desarrollar una aplicación interactiva haciendo uso de las plataformas GitHub y Streamlit, integrando los contenidos revisados en el módulo.", "p", COLOR_TEXTO_PRINCIPAL)
     st.divider()
 
     texto_centrado("Tecnologías Utilizadas", "h3", COLOR_ACENTO_PRINCIPAL, bold=True)
@@ -240,10 +255,10 @@ if secciones == "🏠 Home":
             texto_centrado("Librerías", "h4", COLOR_ACENTO_SECUNDARIO)
 
     st.divider()
-    texto_centrado("Giancarlo Esteban Valdivia Asencio", "h3", COLOR_TEXTO_CLARO, bold=True)
+    texto_centrado("Giancarlo Esteban Valdivia Asencio", "h3", COLOR_ACENTO_SECUNDARIO, bold=True)
     st.divider()
 
-    texto_centrado("Bachiller en la carrera de Ingeniería de Sistemas e Informática, egresado de la Universidad Tecnológica del Perú en el año 2025 cuento con 4 años de experiencia laboral entre prácticas pre-profesionales, prácticas profesionales y puestos laborales directos, actualmente me encuentro laborando en la empresa Molitalia, y me interesa seguir formándome en la administración de data.", "p", COLOR_TEXTO_CLARO)
+    texto_centrado("Bachiller en la carrera de Ingeniería de Sistemas e Informática, egresado de la Universidad Tecnológica del Perú en el año 2025 cuento con 4 años de experiencia laboral entre prácticas pre-profesionales, prácticas profesionales y puestos laborales directos, actualmente me encuentro laborando en la empresa Molitalia, y me interesa seguir formándome en la administración de data.", "p", COLOR_TEXTO_PRINCIPAL)
     st.divider()
 
     texto_centrado("2026", "h3", COLOR_ACENTO_PRINCIPAL)
@@ -251,7 +266,7 @@ if secciones == "🏠 Home":
 elif secciones == "💰 Ejercicio 1 - Movimientos":
     texto_centrado("💰 Ejercicio 1 - Movimientos Diarios", "h1", COLOR_ACENTO_PRINCIPAL, bold=True)
     st.divider()
-    texto_centrado("En este ejercicio se desarrollará una app para el ingreso de movimientos categorizados por ingreso o gasto, esto con el fin de ayudar al usuario a tener un mejor control de sus movimientos financieros diarios o mensuales. Al finalizar se mostrará el detalle de sus movimientos en un listado y su saldo final, indicando si aún tiene un saldo a favor o negativo.", "p", COLOR_TEXTO_CLARO)
+    texto_centrado("En este ejercicio se desarrollará una app para el ingreso de movimientos categorizados por ingreso o gasto, esto con el fin de ayudar al usuario a tener un mejor control de sus movimientos financieros diarios o mensuales. Al finalizar se mostrará el detalle de sus movimientos en un listado y su saldo final, indicando si aún tiene un saldo a favor o negativo.", "p", COLOR_TEXTO_PRINCIPAL)
     st.divider()
 
     def ejercicio_1():
@@ -296,7 +311,7 @@ elif secciones == "💰 Ejercicio 1 - Movimientos":
 elif secciones == "🧾 Ejercicio 2 - Ventas":
     texto_centrado("🧾 Ejercicio 2 - Módulo de Ventas", "h1", COLOR_ACENTO_PRINCIPAL, bold=True)
     st.divider()
-    texto_centrado("En este ejercicio se desarrollará un módulo de ventas de productos en la que se solicitará al operario el ingreso de nombre, categoría, precio, cantidad y total, esto con el fin de tener un cálculo exacto de la venta a realizar. Al finalizar se mostrará el detalle de la compra y el monto total a pagar por parte del cliente.", "p", COLOR_TEXTO_CLARO)
+    texto_centrado("En este ejercicio se desarrollará un módulo de ventas de productos en la que se solicitará al operario el ingreso de nombre, categoría, precio, cantidad y total, esto con el fin de tener un cálculo exacto de la venta a realizar. Al finalizar se mostrará el detalle de la compra y el monto total a pagar por parte del cliente.", "p", COLOR_TEXTO_PRINCIPAL)
     st.divider()
 
     def ejercicio_2():
@@ -363,7 +378,7 @@ elif secciones == "🧾 Ejercicio 2 - Ventas":
 elif secciones == "🖥️ Ejercicio 3 - Almacenamiento":
     texto_centrado("🖥️ Ejercicio 3 - Cálculo de Almacenamiento", "h1", COLOR_ACENTO_PRINCIPAL, bold=True)
     st.divider()
-    texto_centrado("Esta herramienta permite calcular el almacenamiento estimado necesario para respaldos en función de la cantidad de usuarios, y la cantidad de archivos a respaldar.", "p", COLOR_TEXTO_CLARO)
+    texto_centrado("Esta herramienta permite calcular el almacenamiento estimado necesario para respaldos en función de la cantidad de usuarios, y la cantidad de archivos a respaldar.", "p", COLOR_TEXTO_PRINCIPAL)
     st.divider()
 
     if "historial_calculos" not in st.session_state:
@@ -396,7 +411,7 @@ elif secciones == "🖥️ Ejercicio 3 - Almacenamiento":
 else:
     texto_centrado("⚙️ Ejercicio 4 - Operatividad de Servidor", "h1", COLOR_ACENTO_PRINCIPAL, bold=True)
     st.divider()
-    texto_centrado("Este módulo define la entidad del servidor mediante sus atributos clave. A partir de estas variables, el código calcula dinámicamente el porcentaje de disponibilidad restando el tiempo de caída al total, evalúa la ocupación del espacio y genera un diagnóstico del estado general del sistema.", "p", COLOR_TEXTO_CLARO)
+    texto_centrado("Este módulo define la entidad del servidor mediante sus atributos clave. A partir de estas variables, el código calcula dinámicamente el porcentaje de disponibilidad restando el tiempo de caída al total, evalúa la ocupación del espacio y genera un diagnóstico del estado general del sistema.", "p", COLOR_TEXTO_PRINCIPAL)
     st.divider()
     
     if "servidores" not in st.session_state:
