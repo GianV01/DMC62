@@ -324,9 +324,8 @@ else :
                 "Selecciona el servidor que deseas modificar:",
                 options=list(st.session_state.servidores.keys()),
                 key="sb_actualizar")
-        
-        servidor_actual = st.session_state.servidores[servidor_seleccionado_nombre]
-        
+            
+            servidor_actual = st.session_state.servidores[servidor_seleccionado_nombre]
         st.write(f"Modificando atributos de: **{servidor_actual.nombre}**")
         
     col1, col2 = st.columns(2)
