@@ -288,9 +288,9 @@ else :
                             almacenamiento_total_gb=almacenamiento_total,
                             almacenamiento_usado_gb=almacenamiento_usado
                         )
-                        st.session_state.servidores[nuevo_servidor.nombre] = nuevo_servidor
-                        st.success(f"✅ ¡Servidor **'{nuevo_servidor.nombre}'** creado exitosamente!")
-                        st.rerun()
+                    st.session_state.servidores[nuevo_servidor.nombre] = nuevo_servidor
+                    st.success(f"✅ ¡Servidor **'{nuevo_servidor.nombre}'** creado exitosamente!")
+                    st.rerun()
                     except ValueError as e:
                         st.error(f"❌ Error de validación: {e}")
 
