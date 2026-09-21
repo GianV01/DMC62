@@ -237,6 +237,7 @@ elif secciones == "Ejercicio 3":
     st.markdown("**Simplifica tus procesos, potencia tus resultados.**",text_alignment="center")
 
 else:
+    
     st.set_page_config(page_title=" Administración de Servidores", page_icon="🖥️", layout="wide")
     st.title(" 🖥️ Ejercicio 4 - Operatividad de Servidor (CRUD) ", text_alignment="center")
     st.divider()
@@ -244,37 +245,32 @@ else:
                 " identificador, tiempos operativos y capacidades de disco.A partir de estas variables,"  
                 " el código calcula dinámicamente el porcentaje de disponibilidad restando el tiempo de caída al total,  "
                 " evalúa la ocupación del espacio y genera un diagnóstico del estado general del sistema.",text_alignment="justify")
-    st.divider()
+    st.divider()  
     
-if "servidores" not in st.session_state:
-    s1 = lcp.Servidor("Servidor-Web-01", 720, 10, 1000, 800)
-    s2 = lcp.Servidor("Servidor-BD-01", 720, 50, 500, 480)
-    st.session_state.servidores = {
-        s1.nombre: s1,
-        s2.nombre: s2
-    }
-
-tab_leer, tab_crear, tab_actualizar, tab_eliminar = st.tabs([
-    "📋 1. Leer / Visualizar", 
-    "➕ 2. Crear Servidor", 
-    "✏️ 3. Actualizar Servidor", 
-    "🗑️ 4. Eliminar Servidor"
-])
-
-with tab_crear:
-    st.header("➕ Crear un Nuevo Servidor")
-    
+    if "servidores" not in st.session_state:
+        s1 = lcp.Servidor("Servidor-Web-01", 720, 10, 1000, 800)
+        s2 = lcp.Servidor("Servidor-BD-01", 720, 50, 500, 480)
+        st.session_state.servidores = {s1.nombre: s1, s2.nombre: s2}
+        
+        tab_leer, tab_crear, tab_actualizar, tab_eliminar = st.tabs([
+            "📋 1. Leer / Visualizar", "➕ 2. Crear Servidor", 
+            "✏️ 3. Actualizar Servidor", "🗑️ 4. Eliminar Servidor"])
+        
+    with tab_crear:
+        st.header("➕ Crear un Nuevo Servidor")
+            
     with st.form("form_crear_servidor", clear_on_submit=True):
         nombre = st.text_input("Nombre del Servidor")
+                
+    col1, col2 = st.columns(2)
+            
+    with col1:
+        tiempo_total = st.number_input("Tiempo Total (Horas)", min_value=1.0, value=720.0, step=1.0)
+        almacenamiento_total = st.number_input("Almacenamiento Total (GB)", min_value=1.0, value=1000.0, step=10.0)
         
-        col1, col2 = st.columns(2)
-        with col1:
-            tiempo_total = st.number_input("Tiempo Total (Horas)", min_value=1.0, value=720.0, step=1.0)
-            almacenamiento_total = st.number_input("Almacenamiento Total (GB)", min_value=1.0, value=1000.0, step=10.0)
-        
-        with col2:
-            tiempo_caida = st.number_input("Tiempo de Caída (Horas)", min_value=0.0, value=0.0, step=0.5)
-            almacenamiento_usado = st.number_input("Almacenamiento Usado (GB)", min_value=0.0, value=100.0, step=10.0)
+    with col2:
+        tiempo_caida = st.number_input("Tiempo de Caída (Horas)", min_value=0.0, value=0.0, step=0.5)
+        almacenamiento_usado = st.number_input("Almacenamiento Usado (GB)", min_value=0.0, value=100.0, step=10.0)
         
         btn_crear = st.form_submit_button("Guardar Servidor")
         
