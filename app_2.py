@@ -243,161 +243,78 @@ else :
                 " identificador, tiempos operativos y capacidades de disco.A partir de estas variables,"  
                 " el código calcula dinámicamente el porcentaje de disponibilidad restando el tiempo de caída al total,  "
                 " evalúa la ocupación del espacio y genera un diagnóstico del estado general del sistema.",text_alignment="justify")
-    st.divider()  
+    st.divider()
     
     if "servidores" not in st.session_state:
-        s1 = Servidor("Servidor-Web-01", 720, 10, 1000, 800)
-        s2 = Servidor("Servidor-BD-01", 720, 50, 500, 480)
-        st.session_state.servidores = {s1.nombre: s1, s2.nombre: s2}
+        st.session_state.servidores = {"Servidor-01": lcp.Servidor("Servidor-01", 720, 10, 1000, 800)}
 
-    tab_leer, tab_crear, tab_actualizar, tab_eliminar = st.tabs([
-        "📋 1. Leer / Visualizar", 
-        "➕ 2. Crear Servidor", 
-        "✏️ 3. Actualizar Servidor", 
-        "🗑️ 4. Eliminar Servidor"
-    ])
-    
-    with tab_crear:
-        st.header("➕ Crear un Nuevo Servidor")
-    
-        with st.form("form_crear_servidor", clear_on_submit=True):
-            nombre = st.text_input("Nombre del Servidor")
-            
-            col1, col2 = st.columns(2)
-            with col1:
-                tiempo_total = st.number_input("Tiempo Total (Horas)", min_value=1.0, value=720.0, step=1.0)
-                almacenamiento_total = st.number_input("Almacenamiento Total (GB)", min_value=1.0, value=1000.0, step=10.0)
-        
-            with col2:
-                tiempo_caida = st.number_input("Tiempo de Caída (Horas)", min_value=0.0, value=0.0, step=0.5)
-                almacenamiento_usado = st.number_input("Almacenamiento Usado (GB)", min_value=0.0, value=100.0, step=10.0)
-        
-            btn_crear = st.form_submit_button("Guardar Servidor")
-        
-            if btn_crear:
-                if not nombre.strip():
-                    st.error("⚠️ Debe ingresar un nombre válido para el servidor.")
-                elif nombre in st.session_state.servidores:
-                    st.error("⚠️ Ya existe un servidor registrado con ese nombre.")
-                else:
-                    try:
-                        nuevo_servidor = Servidor(
-                            nombre=nombre.strip(),
-                            tiempo_total_h=tiempo_total,
-                            tiempo_caida_h=tiempo_caida,
-                            almacenamiento_total_gb=almacenamiento_total,
-                            almacenamiento_usado_gb=almacenamiento_usado
-                        )
-                            st.session_state.servidores[nuevo_servidor.nombre] = nuevo_servidor
-                            st.success(f"✅ ¡Servidor **'{nuevo_servidor.nombre}'** creado exitosamente!")
-                            st.rerun()
-                            except ValueError as e:
-                                st.error(f"❌ Error de validación: {e}")
+    tab_read, tab_create, tab_update, tab_delete = st.tabs(["📋 Leer", "➕ Crear", "✏️ Actualizar", "🗑️ Eliminar"])
 
-    with tab_leer:
-        st.header("📋 Registros de Servidores Activos")
-    
+    with tab_read:
         if not st.session_state.servidores:
-            st.info("No hay servidores registrados actualmente.")
+            st.info("No hay servidores registrados.")
         else:
-            lista_resumenes = [s.resumen() for s in st.session_state.servidores.values()]
-            df = pd.DataFrame(lista_resumenes)
-            
-            df.columns = ["Nombre Servidor", "Disponibilidad (%)", "Uso Almacenamiento (%)", "Estado"]
-            
-            st.dataframe(df, use_container_width=True, hide_index=True)
-        
-        
-        st.divider()
-        st.subheader("Métricas de Salud Operativa")
-        cols = st.columns(len(st.session_state.servidores))
-        for idx, (nombre, serv) in enumerate(st.session_state.servidores.items()):
-            datos = serv.resumen()
-            with cols[idx]:
-                st.metric(label=nombre, value=f"{datos['disponibilidad_pct']}% Uptime", delta=datos['estado'])
+            datos = [s.resumen() for s in st.session_state.servidores.values()]
+            st.dataframe(pd.DataFrame(datos), use_container_width=True)
 
 
-    with tab_actualizar:
-        st.header("✏️ Actualizar Datos de un Servidor")
+    with tab_create:
+        nombre = st.text_input("Nombre del servidor")
+        tiempo_total = st.number_input("Tiempo Total (Horas)", min_value=1.0, value=720.0)
+        tiempo_caida = st.number_input("Tiempo Caída (Horas)", min_value=0.0, value=0.0)
+        almacenamiento_total = st.number_input("Almacenamiento Total (GB)", min_value=1.0, value=500.0)
+        almacenamiento_usado = st.number_input("Almacenamiento Usado (GB)", min_value=0.0, value=100.0)
+
+        if st.button("Guardar Servidor"):
+            if not nombre.strip():
+                st.error("Ingresa un nombre válido.")
+            elif nombre in st.session_state.servidores:
+                st.error("El servidor ya existe.")
+            else:
+                try:
+                    # Instanciamos la clase usando lcp.Servidor
+                    nuevo = lcp.Servidor(nombre.strip(), tiempo_total, tiempo_caida, almacenamiento_total, almacenamiento_usado)
+                    st.session_state.servidores[nuevo.nombre] = nuevo
+                    st.success(f"Servidor '{nuevo.nombre}' creado.")
+                    st.rerun()
+                except ValueError as e:
+                    st.error(f"Error: {e}")
     
+   
+    with tab_update:
         if not st.session_state.servidores:
-            st.info("No hay servidores disponibles para editar.")
+            st.info("No hay servidores para actualizar.")
         else:
-            servidor_seleccionado_nombre = st.selectbox(
-                "Selecciona el servidor que deseas modificar:",
-                options=list(st.session_state.servidores.keys()),
-                key="sb_actualizar"
-            )
-        
-            servidor_actual = st.session_state.servidores[servidor_seleccionado_nombre]
-        
-            st.write(f"Modificando atributos de: **{servidor_actual.nombre}**")
-        
-            col1, col2 = st.columns(2)
-            with col1:
-                nuevo_tiempo_total = st.number_input(
-                    "Tiempo Total (Horas)", 
-                    min_value=1.0, 
-                    value=float(servidor_actual.tiempo_total_h), 
-                    key="u_tt"
-                )
-                nuevo_almacenamiento_total = st.number_input(
-                    "Almacenamiento Total (GB)", 
-                    min_value=1.0, 
-                    value=float(servidor_actual.almacenamiento_total_gb), 
-                    key="u_at"
-                )
-        
-        with col2:
-            nuevo_tiempo_caida = st.number_input(
-                "Tiempo de Caída (Horas)", 
-                min_value=0.0, 
-                value=float(servidor_actual.tiempo_caida_h), 
-                key="u_tc"
-            )
-            nuevo_almacenamiento_usado = st.number_input(
-                "Almacenamiento Usado (GB)", 
-                min_value=0.0, 
-                value=float(servidor_actual.almacenamiento_usado_gb), 
-                key="u_au"
-            )
+            # st.selectbox para elegir cuál editar
+            seleccion = st.selectbox("Selecciona servidor a modificar:", list(st.session_state.servidores.keys()), key="sb_upd")
+            actual = st.session_state.servidores[seleccion]
+    
+            # Conectamos inputs con los atributos del objeto seleccionado
+            tt = st.number_input("Tiempo Total (Horas)", min_value=1.0, value=float(actual.tiempo_total_h), key="u_tt")
+            tc = st.number_input("Tiempo Caída (Horas)", min_value=0.0, value=float(actual.tiempo_caida_h), key="u_tc")
+            at = st.number_input("Almacenamiento Total (GB)", min_value=1.0, value=float(actual.almacenamiento_total_gb), key="u_at")
+            au = st.number_input("Almacenamiento Usado (GB)", min_value=0.0, value=float(actual.almacenamiento_usado_gb), key="u_au")
+    
+            if st.button("Actualizar Registro"):
+                try:
+                    # Actualizamos reinstanciando con lcp.Servidor
+                    st.session_state.servidores[seleccion] = lcp.Servidor(seleccion, tt, tc, at, au)
+                    st.success(f"Servidor '{seleccion}' actualizado.")
+                    st.rerun()
+                except ValueError as e:
+                    st.error(f"Error: {e}")
+    
+    
+    with tab_delete:
+        if not st.session_state.servidores:
+            st.info("No hay servidores para eliminar.")
+        else:
+            a_borrar = st.selectbox("Selecciona servidor a eliminar:", list(st.session_state.servidores.keys()), key="sb_del")
             
-        if st.button("💾 Actualizar Registro", use_container_width=True):
-            try:
-                # Reinstanciamos o actualizamos los valores con la clase Servidor para ejecutar sus validaciones
-                servidor_actualizado = Servidor(
-                    nombre=servidor_actual.nombre,
-                    tiempo_total_h=nuevo_tiempo_total,
-                    tiempo_caida_h=nuevo_tiempo_caida,
-                    almacenamiento_total_gb=nuevo_almacenamiento_total,
-                    almacenamiento_usado_gb=nuevo_almacenamiento_usado
-                )
-                
-                # Reemplazamos en el diccionario de la sesión
-                st.session_state.servidores[servidor_actual.nombre] = servidor_actualizado
-                st.success(f"✅ Se actualizaron los datos de **{servidor_actual.nombre}** correctamente.")
+            if st.button("Eliminar Servidor"):
+                del st.session_state.servidores[a_borrar]
+                st.success(f"Servidor '{a_borrar}' eliminado.")
                 st.rerun()
-            except ValueError as e:
-                st.error(f"❌ Error al actualizar: {e}")
-
-    with tab_eliminar:
-        st.header("🗑️ Eliminar Servidor")
-    
-        if not st.session_state.servidores:
-            st.info("No hay servidores registrados para eliminar.")
-        else:
-            servidor_a_eliminar = st.selectbox(
-                "Selecciona el servidor que deseas eliminar permanentemente:",
-                options=list(st.session_state.servidores.keys()),
-                key="sb_eliminar"
-            )
-        
-            st.warning(f"⚠️ Estás a punto de borrar el registro del servidor **{servidor_a_eliminar}**.")
-        
-        if st.button("🔥 Confirmar y Eliminar", type="primary"):
-            del st.session_state.servidores[servidor_a_eliminar]
-            st.success(f"🗑️ Servidor **{servidor_a_eliminar}** eliminado con éxito.")
-            st.rerun()
     
     
     st.divider()
