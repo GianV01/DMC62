@@ -232,8 +232,9 @@ elif secciones == "Ejercicio 3":
     st.divider()
     st.markdown("**Simplifica tus procesos, potencia tus resultados.**",text_alignment="center")
 
-else: 
-    st.title(" Ejercicio 3 - Operatividad de Servidor", text_alignment="center")
+else:
+    st.set_page_config(page_title=" Administración de Servidores", page_icon="🖥️", layout="wide")
+    st.title(" 🖥️ Ejercicio 4 - Operatividad de Servidor (CRUD) ", text_alignment="center")
     st.divider()
     st.markdown("Este módulo define la entidad del servidor mediante sus atributos clave como:  "  
                 " identificador, tiempos operativos y capacidades de disco.A partir de estas variables,"  
@@ -241,9 +242,6 @@ else:
                 " evalúa la ocupación del espacio y genera un diagnóstico del estado general del sistema.",text_alignment="justify")
     st.divider()
     
-    st.set_page_config(page_title="Gestión CRUD de Servidores", page_icon="🖥️", layout="wide")
-    st.title("🖥️ Sistema de Gestión de Servidores (CRUD)")
-
 if "servidores" not in st.session_state:
     # Instanciamos usando lcp.Servidor()
     s1 = lcp.Servidor("Servidor-Web-01", 720, 10, 1000, 800)
