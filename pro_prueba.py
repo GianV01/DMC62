@@ -10,7 +10,7 @@ st.set_page_config(page_title="Proyecto 1 - Aplicación", page_icon="🚀", layo
 
 # 2. Paleta de colores basada en la imagen (Azul Marino y Violeta Vibrante)
 COLOR_FONDO_PRINCIPAL = "#121535" # Azul marino oscuro (Fondo general)
-COLOR_FONDO_SIDEBAR = "#6D169F" # Violeta intenso (Barra lateral)
+COLOR_FONDO_SIDEBAR = "#7BC7BF" # Violeta intenso (Barra lateral)
 COLOR_TEXTO_PRINCIPAL = "#FFFFFF" # Blanco puro para alto contraste
 COLOR_ACENTO_PRINCIPAL = "#AF2BFF" # Morado neón brillante (Botones, hover)
 COLOR_FONDO_CONTENEDOR = "#1B1F4A" # Azul marino ligeramente más claro para formularios
