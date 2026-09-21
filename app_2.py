@@ -255,23 +255,23 @@ else :
             "📋 1. Leer / Visualizar", "➕ 2. Crear Servidor", 
             "✏️ 3. Actualizar Servidor", "🗑️ 4. Eliminar Servidor"])
         
-    with tab_crear:
-        st.header("➕ Crear un Nuevo Servidor")
+        with tab_crear:
+            st.header("➕ Crear un Nuevo Servidor")
             
-    with st.form("form_crear_servidor", clear_on_submit=True):
+        with st.form("form_crear_servidor", clear_on_submit=True):
         nombre = st.text_input("Nombre del Servidor")
                 
-    col1, col2 = st.columns(2)
+        col1, col2 = st.columns(2)
             
-    with col1:
-        tiempo_total = st.number_input("Tiempo Total (Horas)", min_value=1.0, value=720.0, step=1.0)
-        almacenamiento_total = st.number_input("Almacenamiento Total (GB)", min_value=1.0, value=1000.0, step=10.0)
+        with col1:
+            tiempo_total = st.number_input("Tiempo Total (Horas)", min_value=1.0, value=720.0, step=1.0)
+            almacenamiento_total = st.number_input("Almacenamiento Total (GB)", min_value=1.0, value=1000.0, step=10.0)
         
-    with col2:
-        tiempo_caida = st.number_input("Tiempo de Caída (Horas)", min_value=0.0, value=0.0, step=0.5)
-        almacenamiento_usado = st.number_input("Almacenamiento Usado (GB)", min_value=0.0, value=100.0, step=10.0)
+        with col2:
+            tiempo_caida = st.number_input("Tiempo de Caída (Horas)", min_value=0.0, value=0.0, step=0.5)
+            almacenamiento_usado = st.number_input("Almacenamiento Usado (GB)", min_value=0.0, value=100.0, step=10.0)
         
-        btn_crear = st.form_submit_button("Guardar Servidor")
+            btn_crear = st.form_submit_button("Guardar Servidor")
         
         if btn_crear:
             if not nombre.strip():
