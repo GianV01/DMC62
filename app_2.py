@@ -257,10 +257,7 @@ else :
         "✏️ 3. Actualizar Servidor", 
         "🗑️ 4. Eliminar Servidor"
     ])
-
-# =============================================================================
-# C - CREATE (CREAR REGISTROS)
-# =============================================================================
+    
     with tab_crear:
         st.header("➕ Crear un Nuevo Servidor")
     
