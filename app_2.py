@@ -294,17 +294,17 @@ else :
                 except ValueError as e:
                     st.error(f"❌ Error de validación: {e}")
                     
-    with tab_leer:
-        st.header("📋 Registros de Servidores Activos")
+        with tab_leer:
+            st.header("📋 Registros de Servidores Activos")
         
-    if not st.session_state.servidores:
-        st.info("No hay servidores registrados actualmente.")
-    else:
-        lista_resumenes = [s.resumen() for s in st.session_state.servidores.values()]
-        df = pd.DataFrame(lista_resumenes)
-        df.columns = ["Nombre Servidor", "Disponibilidad (%)", "Uso Almacenamiento (%)", "Estado"]
+        if not st.session_state.servidores:
+            st.info("No hay servidores registrados actualmente.")
+        else:
+            lista_resumenes = [s.resumen() for s in st.session_state.servidores.values()]
+            df = pd.DataFrame(lista_resumenes)
+            df.columns = ["Nombre Servidor", "Disponibilidad (%)", "Uso Almacenamiento (%)", "Estado"]
         
-        st.dataframe(df, use_container_width=True, hide_index=True)
+            st.dataframe(df, use_container_width=True, hide_index=True)
         
         st.divider()
         st.subheader("Métricas de Salud Operativa")
@@ -314,17 +314,16 @@ else :
             with cols[idx]:
                 st.metric(label=nombre, value=f"{datos['disponibilidad_pct']}% Uptime", delta=datos['estado'])
 
-    with tab_actualizar:
-        st.header("✏️ Actualizar Datos de un Servidor")
+        with tab_actualizar:
+            st.header("✏️ Actualizar Datos de un Servidor")
     
-    if not st.session_state.servidores:
-        st.info("No hay servidores disponibles para editar.")
-    else:
-        servidor_seleccionado_nombre = st.selectbox(
-            "Selecciona el servidor que deseas modificar:",
-            options=list(st.session_state.servidores.keys()),
-            key="sb_actualizar"
-        )
+        if not st.session_state.servidores:
+            st.info("No hay servidores disponibles para editar.")
+        else:
+            servidor_seleccionado_nombre = st.selectbox(
+                "Selecciona el servidor que deseas modificar:",
+                options=list(st.session_state.servidores.keys()),
+                key="sb_actualizar")
         
         servidor_actual = st.session_state.servidores[servidor_seleccionado_nombre]
         
