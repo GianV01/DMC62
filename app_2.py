@@ -251,15 +251,12 @@ else :
         s2 = Servidor("Servidor-BD-01", 720, 50, 500, 480)
         st.session_state.servidores = {s1.nombre: s1, s2.nombre: s2}
 
-# -----------------------------------------------------------------------------
-# PESTAÑAS (st.tabs) PARA ORGANIZAR LAS OPERACIONES CRUD
-# -----------------------------------------------------------------------------
-tab_leer, tab_crear, tab_actualizar, tab_eliminar = st.tabs([
-    "📋 1. Leer / Visualizar", 
-    "➕ 2. Crear Servidor", 
-    "✏️ 3. Actualizar Servidor", 
-    "🗑️ 4. Eliminar Servidor"
-])
+    tab_leer, tab_crear, tab_actualizar, tab_eliminar = st.tabs([
+        "📋 1. Leer / Visualizar", 
+        "➕ 2. Crear Servidor", 
+        "✏️ 3. Actualizar Servidor", 
+        "🗑️ 4. Eliminar Servidor"
+    ])
 
 # =============================================================================
 # C - CREATE (CREAR REGISTROS)
