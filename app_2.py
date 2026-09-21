@@ -247,13 +247,9 @@ else :
     st.divider()  
     
     if "servidores" not in st.session_state:
-    # Inicializamos con algunos servidores de ejemplo
-    s1 = Servidor("Servidor-Web-01", 720, 10, 1000, 800)
-    s2 = Servidor("Servidor-BD-01", 720, 50, 500, 480)
-    st.session_state.servidores = {
-        s1.nombre: s1,
-        s2.nombre: s2
-    }
+        s1 = Servidor("Servidor-Web-01", 720, 10, 1000, 800)
+        s2 = Servidor("Servidor-BD-01", 720, 50, 500, 480)
+        st.session_state.servidores = {s1.nombre: s1, s2.nombre: s2}
 
 # -----------------------------------------------------------------------------
 # PESTAÑAS (st.tabs) PARA ORGANIZAR LAS OPERACIONES CRUD
