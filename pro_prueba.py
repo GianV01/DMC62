@@ -5,131 +5,162 @@ import pandas as pd
 import libreria_funciones_proyecto1 as lfp
 import librería_clases_proyecto1 as lcp
 
-# 1. Configuración inicial (DEBE ir primero)
+# 1. Configuración inicial
 st.set_page_config(page_title="Proyecto 1 - Aplicación", page_icon="🚀", layout="wide")
 
-# 2. Paleta de colores extraída de la imagen
-COLOR_PEACH = "#F8B195"
-COLOR_WATERMELON = "#F67280"
-COLOR_MAUVE = "#C06C84"
-COLOR_PURPLE = "#6C5B7B"
-COLOR_BLUE = "#355C7D"
+# 2. Paleta de colores racionalizada para legibilidad
+COLOR_CHARCOAL = "#2F3133"  # Fondo principal (Oscuro)
+COLOR_BLUE_GREY = "#4A5A6A" # Barra lateral (Intermedio)
+COLOR_BEIGE = "#E6D8C6"     # Textos principales (Claro - Alto contraste)
+COLOR_BRONZE = "#A07B5C"    # Títulos y acentos
+COLOR_OLIVE = "#7B8A74"     # Botones y elementos activos
 
-# 3. Función auxiliar para centralizar textos estrictamente con HTML
-def texto_centrado(texto, etiqueta="h1", color=COLOR_PEACH, size=None):
+# 3. Función auxiliar para centralizar textos
+def texto_centrado(texto, etiqueta="h1", color=COLOR_BEIGE, size=None):
     size_style = f"font-size: {size};" if size else ""
     html = f"""
         <div style='text-align: center; width: 100%; margin-bottom: 1rem;'>
-            <{etiqueta} style='color: {color}; {size_style} text-shadow: 2px 2px 4px rgba(0,0,0,0.3); font-family: "Segoe UI", sans-serif;'>
+            <{etiqueta} style='color: {color}; {size_style} text-shadow: 1px 1px 2px rgba(0,0,0,0.5); font-family: "Segoe UI", sans-serif;'>
                 {texto}
             </{etiqueta}>
         </div>
     """
     st.markdown(html, unsafe_allow_html=True)
 
-# 4. Inyección de CSS Vanguardista basado en tu paleta
+# 4. Inyección de CSS Vanguardista y Menú de Bloques
 def inyectar_estilos():
     css = f"""
     <style>
-    /* Fondo principal con gradiente de la paleta */
+    /* Fondo principal y color de texto por defecto */
     .stApp {{
-        background: linear-gradient(135deg, {COLOR_BLUE} 0%, {COLOR_PURPLE} 100%);
-        color: #FFFFFF;
+        background-color: {COLOR_CHARCOAL};
+        color: {COLOR_BEIGE};
     }}
     
     /* Barra lateral */
     [data-testid="stSidebar"] {{
-        background-color: {COLOR_BLUE} !important;
-        border-right: 2px solid {COLOR_MAUVE};
+        background-color: {COLOR_BLUE_GREY} !important;
+        border-right: 2px solid {COLOR_BRONZE};
     }}
     
-    /* Estilos de inputs y selectores (Interactividad visual) */
+    /* === INNOVACIÓN DEL MENÚ LATERAL (Radio a Botones en Bloque) === */
+    div[role="radiogroup"] > label > div:first-child {{
+        display: none !important; /* Oculta el círculo del radio button */
+    }}
+    div[role="radiogroup"] > label {{
+        background-color: {COLOR_CHARCOAL} !important;
+        color: {COLOR_BEIGE} !important;
+        padding: 12px 20px !important;
+        border-radius: 8px !important;
+        margin-bottom: 10px !important;
+        border: 1px solid {COLOR_OLIVE} !important;
+        transition: all 0.3s ease !important;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }}
+    div[role="radiogroup"] > label:hover {{
+        background-color: {COLOR_BRONZE} !important;
+        color: {COLOR_CHARCOAL} !important;
+        transform: translateX(5px);
+    }}
+    div[role="radiogroup"] > label[data-checked="true"] {{
+        background-color: {COLOR_OLIVE} !important;
+        color: {COLOR_CHARCOAL} !important;
+        font-weight: bold !important;
+        border-color: {COLOR_BEIGE} !important;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }}
+    /* =============================================================== */
+
+    /* Estilos de inputs (Interactividad visual) */
     div[data-baseweb="select"] > div, 
     input[type="text"], 
     input[type="number"],
     div[data-baseweb="base-input"] {{
-        background-color: rgba(255, 255, 255, 0.1) !important;
-        color: #FFFFFF !important;
-        border: 2px solid {COLOR_PURPLE} !important;
-        border-radius: 10px !important;
-        transition: all 0.4s ease !important;
+        background-color: rgba(74, 90, 106, 0.4) !important;
+        color: {COLOR_BEIGE} !important;
+        border: 1px solid {COLOR_BRONZE} !important;
+        border-radius: 8px !important;
+        transition: all 0.3s ease !important;
     }}
 
     /* Efectos Hover y Focus en inputs */
     div[data-baseweb="select"] > div:hover, 
     input[type="text"]:hover, 
     input[type="number"]:hover {{
-        border-color: {COLOR_WATERMELON} !important;
-        box-shadow: 0 0 15px rgba(246, 114, 128, 0.5) !important;
-        transform: translateY(-2px);
+        border-color: {COLOR_OLIVE} !important;
+        box-shadow: 0 0 10px rgba(123, 138, 116, 0.4) !important;
     }}
     
     div[data-baseweb="select"] > div:focus-within, 
     input[type="text"]:focus, 
     input[type="number"]:focus {{
-        border-color: {COLOR_PEACH} !important;
-        box-shadow: 0 0 20px rgba(248, 177, 149, 0.8) !important;
-        background-color: rgba(255, 255, 255, 0.2) !important;
+        border-color: {COLOR_BEIGE} !important;
+        background-color: rgba(74, 90, 106, 0.8) !important;
     }}
 
     /* Botones dinámicos */
     .stButton > button, button[kind="secondaryFormSubmit"] {{
-        background: linear-gradient(90deg, {COLOR_WATERMELON} 0%, {COLOR_MAUVE} 100%) !important;
-        color: white !important;
+        background-color: {COLOR_OLIVE} !important;
+        color: {COLOR_CHARCOAL} !important;
         font-weight: 700 !important;
         border: none !important;
-        border-radius: 25px !important;
+        border-radius: 8px !important;
         padding: 0.6rem 2rem !important;
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.2) !important;
+        transition: all 0.3s ease !important;
     }}
 
     .stButton > button:hover, button[kind="secondaryFormSubmit"]:hover {{
-        transform: scale(1.05) translateY(-3px) !important;
-        box-shadow: 0 10px 20px rgba(248, 177, 149, 0.4) !important;
-        background: linear-gradient(90deg, {COLOR_PEACH} 0%, {COLOR_WATERMELON} 100%) !important;
+        background-color: {COLOR_BRONZE} !important;
+        color: {COLOR_BEIGE} !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.4) !important;
     }}
 
     /* Contenedores y Tarjetas */
     [data-testid="stVerticalBlockBorderWrapper"] {{
-        border-radius: 15px !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        background: rgba(108, 91, 123, 0.3) !important;
-        backdrop-filter: blur(10px);
-        transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+        border-radius: 12px !important;
+        border: 1px solid {COLOR_BLUE_GREY} !important;
+        background-color: rgba(47, 49, 51, 0.7) !important;
+        transition: transform 0.3s ease !important;
     }}
     
     [data-testid="stVerticalBlockBorderWrapper"]:hover {{
-        transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.3) !important;
-        border: 1px solid {COLOR_WATERMELON} !important;
+        transform: translateY(-3px);
+        border: 1px solid {COLOR_OLIVE} !important;
     }}
 
-    /* Separadores */
-    hr {{ border-color: {COLOR_MAUVE} !important; opacity: 0.5; }}
-    
-    /* Métricas */
-    [data-testid="stMetricValue"] {{ color: {COLOR_PEACH} !important; }}
+    /* Separadores y Métricas */
+    hr {{ border-color: {COLOR_BRONZE} !important; opacity: 0.4; }}
+    [data-testid="stMetricValue"] {{ color: {COLOR_OLIVE} !important; }}
+    [data-testid="stMetricLabel"] {{ color: {COLOR_BEIGE} !important; }}
     </style>
     """
     st.markdown(css, unsafe_allow_html=True)
 
 inyectar_estilos()
 
-st.sidebar.title("Secciones")
-secciones = st.sidebar.selectbox("Selecione el módulo", ["Home", "Ejercicio 1", "Ejercicio 2", "Ejercicio 3", "Ejercicio 4"])
+# 5. Nuevo menú de navegación lateral (Innovación visual)
+st.sidebar.write("### 🧭 Navegación")
+secciones = st.sidebar.radio(
+    "Seleccione el módulo:",
+    ["Home", "Ejercicio 1", "Ejercicio 2", "Ejercicio 3", "Ejercicio 4"],
+    label_visibility="collapsed"
+)
 
 if secciones == "Home":
-    texto_centrado("PROYECTO 1 – APLICACIÓN EN STREAMLIT", "h1", COLOR_PEACH, "3rem")
+    texto_centrado("PROYECTO 1 – APLICACIÓN EN STREAMLIT", "h1", COLOR_BEIGE, "2.8rem")
     st.divider()
     
-    # 5. INYECCIÓN DE JAVASCRIPT Y HTML INTERACTIVO (Banner de partículas)
+    # Animación JS interactiva adaptada a la nueva paleta
     banner_html = f"""
     <!DOCTYPE html>
     <html>
     <head>
         <style>
-            canvas {{ display: block; width: 100%; height: 150px; background: transparent; border-radius: 15px; }}
+            canvas {{ display: block; width: 100%; height: 140px; background: transparent; border-radius: 10px; }}
             body {{ margin: 0; overflow: hidden; }}
         </style>
     </head>
@@ -140,13 +171,11 @@ if secciones == "Home":
             const ctx = canvas.getContext('2d');
             let width, height;
             let particles = [];
-            
-            // Colores de tu paleta
-            const colors = ['{COLOR_PEACH}', '{COLOR_WATERMELON}', '{COLOR_MAUVE}'];
+            const colors = ['{COLOR_BLUE_GREY}', '{COLOR_BRONZE}', '{COLOR_OLIVE}'];
 
             function resize() {{
                 width = canvas.width = window.innerWidth;
-                height = canvas.height = 150;
+                height = canvas.height = 140;
             }}
             window.addEventListener('resize', resize);
             resize();
@@ -155,9 +184,9 @@ if secciones == "Home":
                 constructor() {{
                     this.x = Math.random() * width;
                     this.y = Math.random() * height;
-                    this.vx = (Math.random() - 0.5) * 2;
-                    this.vy = (Math.random() - 0.5) * 2;
-                    this.radius = Math.random() * 4 + 1;
+                    this.vx = (Math.random() - 0.5) * 1.5;
+                    this.vy = (Math.random() - 0.5) * 1.5;
+                    this.radius = Math.random() * 3 + 1;
                     this.color = colors[Math.floor(Math.random() * colors.length)];
                 }}
                 update() {{
@@ -173,28 +202,22 @@ if secciones == "Home":
                     ctx.fill();
                 }}
             }}
-
-            for(let i=0; i<50; i++) particles.push(new Particle());
-
-            // Interactividad con el mouse
+            for(let i=0; i<60; i++) particles.push(new Particle());
+            
             let mouse = {{ x: null, y: null }};
             canvas.addEventListener('mousemove', (e) => {{
-                mouse.x = e.clientX;
-                mouse.y = e.clientY;
+                mouse.x = e.clientX; mouse.y = e.clientY;
             }});
 
             function animate() {{
                 ctx.clearRect(0, 0, width, height);
                 particles.forEach(p => {{
                     p.update();
-                    // Interacción repulsiva con el mouse
                     if (mouse.x) {{
                         let dx = mouse.x - p.x;
                         let dy = mouse.y - p.y;
-                        let distance = Math.sqrt(dx*dx + dy*dy);
-                        if (distance < 50) {{
-                            p.x -= dx * 0.05;
-                            p.y -= dy * 0.05;
+                        if (Math.sqrt(dx*dx + dy*dy) < 60) {{
+                            p.x -= dx * 0.03; p.y -= dy * 0.03;
                         }}
                     }}
                     p.draw();
@@ -206,7 +229,7 @@ if secciones == "Home":
     </body>
     </html>
     """
-    components.html(banner_html, height=155)
+    components.html(banner_html, height=145)
  
     col1, col2 = st.columns(2)
     with col1:
@@ -219,41 +242,33 @@ if secciones == "Home":
             st.image("python_logo.png", width=250)
 
     st.divider()
-    texto_centrado("Módulo 1 – Python Fundamentals", "h3", COLOR_WATERMELON)
+    texto_centrado("Módulo 1 – Python Fundamentals", "h3", COLOR_BRONZE)
     st.divider()
 
-    texto_centrado("Se va a desarrollar una aplicación interactiva haciendo uso de las plataformas GitHub y Streamlit, integrando los contenidos revisados en el módulo.", "p", "white")
+    texto_centrado("Se va a desarrollar una aplicación interactiva haciendo uso de las plataformas GitHub y Streamlit, integrando los contenidos revisados en el módulo.", "p", COLOR_BEIGE)
     st.divider()
 
-    texto_centrado("Tecnologías Utilizadas", "h3", COLOR_WATERMELON)
+    texto_centrado("Tecnologías Utilizadas", "h3", COLOR_BRONZE)
 
     col3, col4, col5, col6 = st.columns(4)
-    with col3:
-        with st.container(border=True):
-            texto_centrado("Python", "h4", COLOR_PEACH)
-    with col4:
-        with st.container(border=True):
-            texto_centrado("GitHub", "h4", COLOR_PEACH)
-    with col5:
-        with st.container(border=True):
-            texto_centrado("Streamlit", "h4", COLOR_PEACH)
-    with col6:
-        with st.container(border=True):
-            texto_centrado("Librerías", "h4", COLOR_PEACH)
+    for col, tech in zip([col3, col4, col5, col6], ["Python", "GitHub", "Streamlit", "Librerías"]):
+        with col:
+            with st.container(border=True):
+                texto_centrado(tech, "h4", COLOR_OLIVE)
 
     st.divider()
-    texto_centrado("Giancarlo Esteban Valdivia Asencio", "h3", COLOR_MAUVE)
+    texto_centrado("Giancarlo Esteban Valdivia Asencio", "h3", COLOR_BRONZE)
     st.divider()
 
-    texto_centrado("Bachiller en la carrera de Ingenieria de Sistemas e Informatica, egresado de la universidad Tecnologica del Perú en el año 2025 cuento con 4 años de experiencia laboral entre practicas pre-profesionales,practicas profesionales y puestos laborales directos, actualmente me encuentro laborando en la empresa Molitalia, y mi interesa seguir formandome en la administracion de data.", "p", "white")
+    texto_centrado("Bachiller en la carrera de Ingenieria de Sistemas e Informatica, egresado de la universidad Tecnologica del Perú en el año 2025 cuento con 4 años de experiencia laboral entre practicas pre-profesionales,practicas profesionales y puestos laborales directos, actualmente me encuentro laborando en la empresa Molitalia, y mi interesa seguir formandome en la administracion de data.", "p", COLOR_BEIGE)
     st.divider()
 
-    texto_centrado("2026", "h3", COLOR_WATERMELON)
+    texto_centrado("2026", "h3", COLOR_OLIVE)
 
 elif secciones == "Ejercicio 1":
-    texto_centrado("💰 Ejercicio 1 - Movimientos Diarios", "h1", COLOR_PEACH)
+    texto_centrado("💰 Ejercicio 1 - Movimientos Diarios", "h1", COLOR_BEIGE)
     st.divider()
-    texto_centrado("En este ejercicio se desarrollara una app para el ingreso de movimientos categorizados por ingreso o gasto, esto con el fin de ayudar al usuario a tener un mejor control de sus movimientos financieros diarios o mensuales. Al finalizar se mostrará el detalle de sus movimientos en un listado y su saldo final, indicando si aun tiene un salgo a favor o negativo.", "p", "white")
+    texto_centrado("En este ejercicio se desarrollara una app para el ingreso de movimientos categorizados por ingreso o gasto, esto con el fin de ayudar al usuario a tener un mejor control de sus movimientos financieros diarios o mensuales. Al finalizar se mostrará el detalle de sus movimientos en un listado y su saldo final, indicando si aun tiene un salgo a favor o negativo.", "p", COLOR_BEIGE)
     st.divider()
 
     def ejercicio_1():
@@ -293,12 +308,12 @@ elif secciones == "Ejercicio 1":
 
     ejercicio_1()
     st.divider()
-    texto_centrado("No ahorres lo que queda después de gastar, gasta lo que queda después de ahorrar", "h4", COLOR_PEACH)
+    texto_centrado("No ahorres lo que queda después de gastar, gasta lo que queda después de ahorrar", "h4", COLOR_BRONZE)
 
 elif secciones == "Ejercicio 2":
-    texto_centrado("🧾 Ejercicio 2 - Módulo de Ventas", "h1", COLOR_PEACH)
+    texto_centrado("🧾 Ejercicio 2 - Módulo de Ventas", "h1", COLOR_BEIGE)
     st.divider()
-    texto_centrado("En este ejercicio se desarrollará un modulo de ventas de productos en la que se solicitará al operario el ingreso de nombre, categoria, precio, cantidad y total, esto con el fin de tener un calculo exacto de la venta a realizar. Al finalizar se mostrará el detalle de la compra y el monto total a pagar por parte del cliente.", "p", "white")
+    texto_centrado("En este ejercicio se desarrollará un modulo de ventas de productos en la que se solicitará al operario el ingreso de nombre, categoria, precio, cantidad y total, esto con el fin de tener un calculo exacto de la venta a realizar. Al finalizar se mostrará el detalle de la compra y el monto total a pagar por parte del cliente.", "p", COLOR_BEIGE)
     st.divider()
 
     def ejercicio_2():
@@ -310,7 +325,7 @@ elif secciones == "Ejercicio 2":
             st.session_state.array_totales = np.array([], dtype=float)
         
         with st.form("form_registro_producto", clear_on_submit=True):
-            texto_centrado("Ingrese el Producto", "h3", COLOR_WATERMELON)
+            texto_centrado("Ingrese el Producto", "h3", COLOR_BRONZE)
             col1, col2 = st.columns(2)
             
             with col1:
@@ -341,7 +356,7 @@ elif secciones == "Ejercicio 2":
                 st.success(f"Producto '{producto}' agregado correctamente.")
         
         if len(st.session_state.array_productos) > 0:
-            texto_centrado("Productos Registrados", "h3", COLOR_WATERMELON)
+            texto_centrado("Productos Registrados", "h3", COLOR_BRONZE)
             df_registros = pd.DataFrame({
                 "Producto": st.session_state.array_productos,
                 "Categoría": st.session_state.array_categorias,
@@ -351,7 +366,7 @@ elif secciones == "Ejercicio 2":
             })
             st.dataframe(df_registros, use_container_width=True)
             
-            texto_centrado("Resumen de Compra", "h3", COLOR_MAUVE)
+            texto_centrado("Resumen de Compra", "h3", COLOR_OLIVE)
             col_m1, col_m2 = st.columns(2)
             col_m1.metric("Total de Productos", len(df_registros))
             col_m2.metric("Monto Total", f"S/{df_registros['Total'].sum():,.2f}")
@@ -360,12 +375,12 @@ elif secciones == "Ejercicio 2":
             
     ejercicio_2()
     st.divider()
-    texto_centrado("Lo que no se mide, no se controla; lo que no se controla, no mejora.", "h4", COLOR_PEACH)
+    texto_centrado("Lo que no se mide, no se controla; lo que no se controla, no mejora.", "h4", COLOR_BRONZE)
 
 elif secciones == "Ejercicio 3":
-    texto_centrado("🖥️ Ejercicio 3 - Cálculo de Almacenamiento", "h1", COLOR_PEACH)
+    texto_centrado("🖥️ Ejercicio 3 - Cálculo de Almacenamiento", "h1", COLOR_BEIGE)
     st.divider()
-    texto_centrado("Esta herramienta permite calcular el almacenamiento estimado necesario para respaldos en función de la cantidad de usuarios, y la cantidad de archivos a respaldar.", "p", "white")
+    texto_centrado("Esta herramienta permite calcular el almacenamiento estimado necesario para respaldos en función de la cantidad de usuarios, y la cantidad de archivos a respaldar.", "p", COLOR_BEIGE)
     st.divider()
 
     if "historial_calculos" not in st.session_state:
@@ -388,17 +403,17 @@ elif secciones == "Ejercicio 3":
         st.session_state.historial_calculos.append(calculo_alm)
 
     if st.session_state.historial_calculos:
-        texto_centrado("Histórico de Resultados:", "h3", COLOR_WATERMELON)
+        texto_centrado("Histórico de Resultados:", "h3", COLOR_BRONZE)
         df_resultados = pd.DataFrame(st.session_state.historial_calculos)
         st.dataframe(df_resultados, use_container_width=True)
 
     st.divider()
-    texto_centrado("Simplifica tus procesos, potencia tus resultados.", "h4", COLOR_PEACH)
+    texto_centrado("Simplifica tus procesos, potencia tus resultados.", "h4", COLOR_BRONZE)
     
 else:
-    texto_centrado("⚙️ Ejercicio 4 - Operatividad de Servidor", "h1", COLOR_PEACH)
+    texto_centrado("⚙️ Ejercicio 4 - Operatividad de Servidor", "h1", COLOR_BEIGE)
     st.divider()
-    texto_centrado("Este módulo define la entidad del servidor mediante sus atributos clave como: identificador, tiempos operativos y capacidades de disco. A partir de estas variables, el código calcula dinámicamente el porcentaje de disponibilidad restando el tiempo de caída al total, evalúa la ocupación del espacio y genera un diagnóstico del estado general del sistema.", "p", "white")
+    texto_centrado("Este módulo define la entidad del servidor mediante sus atributos clave como: identificador, tiempos operativos y capacidades de disco. A partir de estas variables, el código calcula dinámicamente el porcentaje de disponibilidad restando el tiempo de caída al total, evalúa la ocupación del espacio y genera un diagnóstico del estado general del sistema.", "p", COLOR_BEIGE)
     st.divider()
     
     if "servidores" not in st.session_state:
@@ -475,4 +490,4 @@ else:
                     st.rerun()
     
     st.divider()
-    texto_centrado("Simplifica tus procesos, potencia tus resultados.", "h4", COLOR_PEACH)
+    texto_centrado("Simplifica tus procesos, potencia tus resultados.", "h4", COLOR_BRONZE)
