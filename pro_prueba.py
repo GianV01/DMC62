@@ -9,7 +9,7 @@ import librería_clases_proyecto1 as lcp
 st.set_page_config(page_title="Proyecto 1 - Aplicación", page_icon="🚀", layout="wide")
 
 # 2. Paleta de colores balanceada
-COLOR_FONDO_PRINCIPAL = "#FFFFFF" # Blanco (Área de formularios y resultados)
+COLOR_FONDO_PRINCIPAL = "#323627" # Blanco (Área de formularios y resultados)
 COLOR_FONDO_SIDEBAR = "#353535" # Gris Oscuro (Barra lateral)
 COLOR_TEXTO_PRINCIPAL = "#353535" # Gris Oscuro (Texto en fondo blanco)
 COLOR_TEXTO_CLARO = "#FFFFFF" # Blanco (Texto en barra lateral y botones)
