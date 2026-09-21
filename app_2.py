@@ -261,65 +261,57 @@ else :
 # =============================================================================
 # C - CREATE (CREAR REGISTROS)
 # =============================================================================
-with tab_crear:
-    st.header("➕ Crear un Nuevo Servidor")
+    with tab_crear:
+        st.header("➕ Crear un Nuevo Servidor")
     
-    with st.form("form_crear_servidor", clear_on_submit=True):
-        nombre = st.text_input("Nombre del Servidor")
+        with st.form("form_crear_servidor", clear_on_submit=True):
+            nombre = st.text_input("Nombre del Servidor")
+            
+            col1, col2 = st.columns(2)
+            with col1:
+                tiempo_total = st.number_input("Tiempo Total (Horas)", min_value=1.0, value=720.0, step=1.0)
+                almacenamiento_total = st.number_input("Almacenamiento Total (GB)", min_value=1.0, value=1000.0, step=10.0)
         
-        col1, col2 = st.columns(2)
-        with col1:
-            tiempo_total = st.number_input("Tiempo Total (Horas)", min_value=1.0, value=720.0, step=1.0)
-            almacenamiento_total = st.number_input("Almacenamiento Total (GB)", min_value=1.0, value=1000.0, step=10.0)
+            with col2:
+                tiempo_caida = st.number_input("Tiempo de Caída (Horas)", min_value=0.0, value=0.0, step=0.5)
+                almacenamiento_usado = st.number_input("Almacenamiento Usado (GB)", min_value=0.0, value=100.0, step=10.0)
         
-        with col2:
-            tiempo_caida = st.number_input("Tiempo de Caída (Horas)", min_value=0.0, value=0.0, step=0.5)
-            almacenamiento_usado = st.number_input("Almacenamiento Usado (GB)", min_value=0.0, value=100.0, step=10.0)
+            btn_crear = st.form_submit_button("Guardar Servidor")
         
-        btn_crear = st.form_submit_button("Guardar Servidor")
-        
-        if btn_crear:
-            if not nombre.strip():
-                st.error("⚠️ Debe ingresar un nombre válido para el servidor.")
-            elif nombre in st.session_state.servidores:
-                st.error("⚠️ Ya existe un servidor registrado con ese nombre.")
-            else:
-                try:
-                    # Instanciamos la clase Servidor
-                    nuevo_servidor = Servidor(
-                        nombre=nombre.strip(),
-                        tiempo_total_h=tiempo_total,
-                        tiempo_caida_h=tiempo_caida,
-                        almacenamiento_total_gb=almacenamiento_total,
-                        almacenamiento_usado_gb=almacenamiento_usado
-                    )
-                    # Guardamos en el diccionario del estado de la sesión
-                    st.session_state.servidores[nuevo_servidor.nombre] = nuevo_servidor
-                    st.success(f"✅ ¡Servidor **'{nuevo_servidor.nombre}'** creado exitosamente!")
-                    st.rerun()
-                except ValueError as e:
-                    st.error(f"❌ Error de validación: {e}")
+            if btn_crear:
+                if not nombre.strip():
+                    st.error("⚠️ Debe ingresar un nombre válido para el servidor.")
+                elif nombre in st.session_state.servidores:
+                    st.error("⚠️ Ya existe un servidor registrado con ese nombre.")
+                else:
+                    try:
+                        nuevo_servidor = Servidor(
+                            nombre=nombre.strip(),
+                            tiempo_total_h=tiempo_total,
+                            tiempo_caida_h=tiempo_caida,
+                            almacenamiento_total_gb=almacenamiento_total,
+                            almacenamiento_usado_gb=almacenamiento_usado
+                        )
+                        st.session_state.servidores[nuevo_servidor.nombre] = nuevo_servidor
+                        st.success(f"✅ ¡Servidor **'{nuevo_servidor.nombre}'** creado exitosamente!")
+                        st.rerun()
+                    except ValueError as e:
+                        st.error(f"❌ Error de validación: {e}")
 
-# =============================================================================
-# R - READ (LEER Y VISUALIZAR REGISTROS)
-# =============================================================================
-with tab_leer:
-    st.header("📋 Registros de Servidores Activos")
+    with tab_leer:
+        st.header("📋 Registros de Servidores Activos")
     
-    if not st.session_state.servidores:
-        st.info("No hay servidores registrados actualmente.")
-    else:
-        # Generamos una lista invocando el método resumen() de cada objeto Servidor
-        lista_resumenes = [s.resumen() for s in st.session_state.servidores.values()]
-        df = pd.DataFrame(lista_resumenes)
+        if not st.session_state.servidores:
+            st.info("No hay servidores registrados actualmente.")
+        else:
+            lista_resumenes = [s.resumen() for s in st.session_state.servidores.values()]
+            df = pd.DataFrame(lista_resumenes)
+            
+            df.columns = ["Nombre Servidor", "Disponibilidad (%)", "Uso Almacenamiento (%)", "Estado"]
+            
+            st.dataframe(df, use_container_width=True, hide_index=True)
         
-        # Renombramos columnas para mejor presentación gráfica
-        df.columns = ["Nombre Servidor", "Disponibilidad (%)", "Uso Almacenamiento (%)", "Estado"]
         
-        # Muestreo mediante st.dataframe()
-        st.dataframe(df, use_container_width=True, hide_index=True)
-        
-        # Métricas individuales de resumen
         st.divider()
         st.subheader("Métricas de Salud Operativa")
         cols = st.columns(len(st.session_state.servidores))
