@@ -8,6 +8,7 @@ st.sidebar.title("Secciones")
 secciones = st.sidebar.selectbox("Selecione el módulo", ["Home", "Ejercicio 1", "Ejercicio 2", "Ejercicio 3", "Ejercicio 4"])
 
 if secciones == "Home":
+    st.set_page_config(page_title=" Presentación ", page_icon="🪪", layout="wide")
     st.title("PROYECTO 1 – APLICACIÓN EN STREAMLIT",text_alignment="center")
     st.divider()
  
@@ -62,7 +63,8 @@ if secciones == "Home":
 
     st.subheader(" 2026 ",text_alignment="center")
 elif secciones == "Ejercicio 1":
-    st.title("Ejercicio 1 - Movimientos Diaros",text_alignment="center")
+    st.set_page_config(page_title=" Control Financiero ", page_icon="💸", layout="wide")
+    st.title(" 💰 Ejercicio 1 - Movimientos Diaros",text_alignment="center")
     st.divider()
     st.markdown("En este ejercicio se desarrollara una app para el ingreso de movimientos categorizados por ingreso o gasto, esto con el fin de ayudar al usuario a tener un mejor control de sus movimientos financieros diarios o mensuales. Al finalizar se mostrará el detalle de sus movimientos en un listado y su saldo final, indicando si aun tiene un salgo a favor o negativo.",text_alignment="justify")
     st.divider()
@@ -111,7 +113,8 @@ elif secciones == "Ejercicio 1":
     st.markdown("**No ahorres lo que queda después de gastar, gasta lo que queda después de ahorrar**",text_alignment="center")
 
 elif secciones == "Ejercicio 2":
-    st.title("Ejercicio 2 - Modulo de Ventas",text_alignment="center")
+    st.set_page_config(page_title=" Modulo de Atención", page_icon="🛒", layout="wide")
+    st.title(" 🧾 Ejercicio 2 - Modulo de Ventas",text_alignment="center")
     st.divider()
     st.markdown("En este ejercicio se desarrollará un modulo de ventas de productos en la que se solicitará al operario el ingreso de  "
                 "nombre, categoria, precio, cantidad y total, esto con el fin de tener un calculo exacto de la venta a realizar  "
@@ -196,7 +199,8 @@ elif secciones == "Ejercicio 2":
     st.markdown("**Lo que no se mide, no se controla; lo que no se controla, no mejora.**",text_alignment="center")
 
 elif secciones == "Ejercicio 3":
-    st.title(" Ejercicio 3 - Cálculo de Almacenamiento de Respaldo", text_alignment="center")
+    st.set_page_config(page_title=" Respaldo de Almacenamiento", page_icon="💾", layout="wide")
+    st.title(" 🖥️ Ejercicio 3 - Cálculo de Almacenamiento de Respaldo", text_alignment="center")
     st.divider()
     st.markdown("Esta herramienta permite calcular el **almacenamiento estimado necesario para respaldos**"  
                 " en función de la cantidad de usuarios, y la cantidad de archivos a respaldar.")
@@ -243,7 +247,6 @@ else:
     st.divider()
     
 if "servidores" not in st.session_state:
-    # Instanciamos usando lcp.Servidor()
     s1 = lcp.Servidor("Servidor-Web-01", 720, 10, 1000, 800)
     s2 = lcp.Servidor("Servidor-BD-01", 720, 50, 500, 480)
     st.session_state.servidores = {
@@ -251,9 +254,6 @@ if "servidores" not in st.session_state:
         s2.nombre: s2
     }
 
-# -----------------------------------------------------------------------------
-# PESTAÑAS (st.tabs) PARA ORGANIZAR LAS OPERACIONES CRUD
-# -----------------------------------------------------------------------------
 tab_leer, tab_crear, tab_actualizar, tab_eliminar = st.tabs([
     "📋 1. Leer / Visualizar", 
     "➕ 2. Crear Servidor", 
@@ -261,9 +261,6 @@ tab_leer, tab_crear, tab_actualizar, tab_eliminar = st.tabs([
     "🗑️ 4. Eliminar Servidor"
 ])
 
-# =============================================================================
-# C - CREATE (CREAR REGISTROS)
-# =============================================================================
 with tab_crear:
     st.header("➕ Crear un Nuevo Servidor")
     
@@ -302,9 +299,6 @@ with tab_crear:
                 except ValueError as e:
                     st.error(f"❌ Error de validación: {e}")
 
-# =============================================================================
-# R - READ (LEER Y VISUALIZAR REGISTROS)
-# =============================================================================
 with tab_leer:
     st.header("📋 Registros de Servidores Activos")
     
@@ -326,9 +320,6 @@ with tab_leer:
             with cols[idx]:
                 st.metric(label=nombre, value=f"{datos['disponibilidad_pct']}% Uptime", delta=datos['estado'])
 
-# =============================================================================
-# U - UPDATE (ACTUALIZAR REGISTROS)
-# =============================================================================
 with tab_actualizar:
     st.header("✏️ Actualizar Datos de un Servidor")
     
@@ -371,9 +362,6 @@ with tab_actualizar:
             except ValueError as e:
                 st.error(f"❌ Error al actualizar: {e}")
 
-# =============================================================================
-# D - DELETE (ELIMINAR REGISTROS)
-# =============================================================================
 with tab_eliminar:
     st.header("🗑️ Eliminar Servidor")
     
@@ -388,7 +376,7 @@ with tab_eliminar:
         
         st.warning(f"⚠️ Estás a punto de borrar el registro del servidor **{servidor_a_eliminar}**.")
         
-        if st.button("🔥 Confirmar y Eliminar", type="primary"):
+        if st.button("👀 Confirmar y Eliminar", type="primary"):
             del st.session_state.servidores[servidor_a_eliminar]
             st.success(f"🗑️ Servidor **{servidor_a_eliminar}** eliminado con éxito.")
             st.rerun()
