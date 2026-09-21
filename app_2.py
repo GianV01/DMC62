@@ -243,11 +243,7 @@ else:
     
     st.set_page_config(page_title="Gestión CRUD de Servidores", page_icon="🖥️", layout="wide")
     st.title("🖥️ Sistema de Gestión de Servidores (CRUD)")
-    st.caption("Administra, evalúa y actualiza servidores en tiempo real conectando la clase `Servidor` con Streamlit.")
 
-# -----------------------------------------------------------------------------
-# ESTADO DE LA SESIÓN (Persistencia de datos en memoria)
-# -----------------------------------------------------------------------------
 if "servidores" not in st.session_state:
     # Instanciamos usando lcp.Servidor()
     s1 = lcp.Servidor("Servidor-Web-01", 720, 10, 1000, 800)
