@@ -293,14 +293,13 @@ else :
                     st.rerun()
                 except ValueError as e:
                     st.error(f"❌ Error de validación: {e}")
-
-with tab_leer:
-    st.header("📋 Registros de Servidores Activos")
-    
+                    
+    with tab_leer:
+        st.header("📋 Registros de Servidores Activos")
+        
     if not st.session_state.servidores:
         st.info("No hay servidores registrados actualmente.")
     else:
-        # Método resumen() ejecutado desde la clase Servidor
         lista_resumenes = [s.resumen() for s in st.session_state.servidores.values()]
         df = pd.DataFrame(lista_resumenes)
         df.columns = ["Nombre Servidor", "Disponibilidad (%)", "Uso Almacenamiento (%)", "Estado"]
