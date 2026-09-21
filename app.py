@@ -5,7 +5,7 @@ import pandas as pd
 import libreria_funciones_proyecto1 as lfp
 import librería_clases_proyecto1 as lcp
 
-# 1. Configuración inicial
+
 st.set_page_config(page_title="Proyecto 1 - Aplicación", page_icon="🚀", layout="wide")
 
 # 2. Paleta de colores basada en la imagen (Azul Marino y Violeta Vibrante)
@@ -16,7 +16,7 @@ COLOR_ACENTO_PRINCIPAL = "#AF2BFF" # Morado neón brillante (Botones, hover)
 COLOR_FONDO_CONTENEDOR = "#1B1F4A" # Azul marino ligeramente más claro para formularios
 COLOR_BORDES = "#4A4E82" # Azul apizarrado para bordes sutiles
 
-# 3. Función auxiliar para centralizar textos (Forzado a blanco por defecto)
+
 def texto_centrado(texto, etiqueta="h1", color=COLOR_TEXTO_PRINCIPAL, size=None, bold=False):
     size_style = f"font-size: {size};" if size else ""
     bold_style = "font-weight: bold;" if bold else ""
@@ -29,7 +29,7 @@ def texto_centrado(texto, etiqueta="h1", color=COLOR_TEXTO_PRINCIPAL, size=None,
     """
     st.markdown(html, unsafe_allow_html=True)
 
-# 4. Inyección de CSS (Diseño oscuro de alto contraste)
+
 def inyectar_estilos():
     css = f"""
     <style>
@@ -148,7 +148,7 @@ def inyectar_estilos():
 
 inyectar_estilos()
 
-# 5. Barra Lateral Mejorada
+
 st.sidebar.markdown(f"<h2 style='color: {COLOR_TEXTO_PRINCIPAL}; text-align: center; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);'>Navegación</h2>", unsafe_allow_html=True)
 st.sidebar.markdown("<br>", unsafe_allow_html=True)
 
@@ -162,7 +162,7 @@ if secciones == "🏠 Home":
     texto_centrado("PROYECTO 1 – APLICACIÓN EN STREAMLIT", "h1", COLOR_TEXTO_PRINCIPAL, "2.5rem", bold=True)
     st.divider()
     
-    # 6. Animación JS ajustada a los nuevos colores neón
+    
     banner_html = f"""
     <!DOCTYPE html>
     <html>
