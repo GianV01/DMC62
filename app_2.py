@@ -259,7 +259,7 @@ else :
             st.header("➕ Crear un Nuevo Servidor")
             
         with st.form("form_crear_servidor", clear_on_submit=True):
-        nombre = st.text_input("Nombre del Servidor")
+            nombre = st.text_input("Nombre del Servidor")
                 
         col1, col2 = st.columns(2)
             
