@@ -160,7 +160,8 @@ secciones = st.sidebar.radio(
 
 if secciones == "🏠 Home":
     texto_centrado(" PORTAFORLIO | HERRAMIENTAS DE GESTIÓN CON PYTHON ", "h1", COLOR_TEXTO_PRINCIPAL, "2.5rem", bold=True)
-    st.title (" PORTAFORLIO ", text_alignment="center")
+    st.title (" | PORTAFORLIO | ", text_alignment="center")
+    st.title (" HERRAMIENTAS DE GESTIÓN CON PYTHON ", text_alignment="center")
     st.divider()
     
     
