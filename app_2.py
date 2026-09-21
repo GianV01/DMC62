@@ -314,8 +314,8 @@ else :
             with cols[idx]:
                 st.metric(label=nombre, value=f"{datos['disponibilidad_pct']}% Uptime", delta=datos['estado'])
 
-with tab_actualizar:
-    st.header("✏️ Actualizar Datos de un Servidor")
+    with tab_actualizar:
+        st.header("✏️ Actualizar Datos de un Servidor")
     
     if not st.session_state.servidores:
         st.info("No hay servidores disponibles para editar.")
@@ -330,34 +330,33 @@ with tab_actualizar:
         
         st.write(f"Modificando atributos de: **{servidor_actual.nombre}**")
         
-        col1, col2 = st.columns(2)
-        with col1:
-            nuevo_tiempo_total = st.number_input("Tiempo Total (Horas)", min_value=1.0, value=float(servidor_actual.tiempo_total_h), key="u_tt")
-            nuevo_almacenamiento_total = st.number_input("Almacenamiento Total (GB)", min_value=1.0, value=float(servidor_actual.almacenamiento_total_gb), key="u_at")
+    col1, col2 = st.columns(2)
+    with col1:
+        nuevo_tiempo_total = st.number_input("Tiempo Total (Horas)", min_value=1.0, value=float(servidor_actual.tiempo_total_h), key="u_tt")
+        nuevo_almacenamiento_total = st.number_input("Almacenamiento Total (GB)", min_value=1.0, value=float(servidor_actual.almacenamiento_total_gb), key="u_at")
         
-        with col2:
-            nuevo_tiempo_caida = st.number_input("Tiempo de Caída (Horas)", min_value=0.0, value=float(servidor_actual.tiempo_caida_h), key="u_tc")
-            nuevo_almacenamiento_usado = st.number_input("Almacenamiento Usado (GB)", min_value=0.0, value=float(servidor_actual.almacenamiento_usado_gb), key="u_au")
+    with col2:
+        nuevo_tiempo_caida = st.number_input("Tiempo de Caída (Horas)", min_value=0.0, value=float(servidor_actual.tiempo_caida_h), key="u_tc")
+        nuevo_almacenamiento_usado = st.number_input("Almacenamiento Usado (GB)", min_value=0.0, value=float(servidor_actual.almacenamiento_usado_gb), key="u_au")
             
-        if st.button("💾 Actualizar Registro", use_container_width=True):
-            try:
-                # Reinstanciamos con lcp.Servidor
-                servidor_actualizado = lcp.Servidor(
-                    nombre=servidor_actual.nombre,
-                    tiempo_total_h=nuevo_tiempo_total,
-                    tiempo_caida_h=nuevo_tiempo_caida,
-                    almacenamiento_total_gb=nuevo_almacenamiento_total,
-                    almacenamiento_usado_gb=nuevo_almacenamiento_usado
-                )
-                
-                st.session_state.servidores[servidor_actual.nombre] = servidor_actualizado
-                st.success(f"✅ Se actualizaron los datos de **{servidor_actual.nombre}** correctamente.")
-                st.rerun()
-            except ValueError as e:
-                st.error(f"❌ Error al actualizar: {e}")
+    if st.button("💾 Actualizar Registro", use_container_width=True):
+        try:
+            servidor_actualizado = lcp.Servidor(
+                nombre=servidor_actual.nombre,
+                tiempo_total_h=nuevo_tiempo_total,
+                tiempo_caida_h=nuevo_tiempo_caida,
+                almacenamiento_total_gb=nuevo_almacenamiento_total,
+                almacenamiento_usado_gb=nuevo_almacenamiento_usado
+            )
+            
+            st.session_state.servidores[servidor_actual.nombre] = servidor_actualizado
+            st.success(f"✅ Se actualizaron los datos de **{servidor_actual.nombre}** correctamente.")
+            st.rerun()
+        except ValueError as e:
+            st.error(f"❌ Error al actualizar: {e}")
 
-with tab_eliminar:
-    st.header("🗑️ Eliminar Servidor")
+    with tab_eliminar:
+        st.header("🗑️ Eliminar Servidor")
     
     if not st.session_state.servidores:
         st.info("No hay servidores registrados para eliminar.")
