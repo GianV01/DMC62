@@ -317,40 +317,37 @@ else :
             with cols[idx]:
                 st.metric(label=nombre, value=f"{datos['disponibilidad_pct']}% Uptime", delta=datos['estado'])
 
-# =============================================================================
-# U - UPDATE (ACTUALIZAR REGISTROS)
-# =============================================================================
-with tab_actualizar:
-    st.header("✏️ Actualizar Datos de un Servidor")
+
+    with tab_actualizar:
+        st.header("✏️ Actualizar Datos de un Servidor")
     
-    if not st.session_state.servidores:
-        st.info("No hay servidores disponibles para editar.")
-    else:
-        # Uso de st.selectbox() para seleccionar el registro
-        servidor_seleccionado_nombre = st.selectbox(
-            "Selecciona el servidor que deseas modificar:",
-            options=list(st.session_state.servidores.keys()),
-            key="sb_actualizar"
-        )
-        
-        servidor_actual = st.session_state.servidores[servidor_seleccionado_nombre]
-        
-        st.write(f"Modificando atributos de: **{servidor_actual.nombre}**")
-        
-        col1, col2 = st.columns(2)
-        with col1:
-            nuevo_tiempo_total = st.number_input(
-                "Tiempo Total (Horas)", 
-                min_value=1.0, 
-                value=float(servidor_actual.tiempo_total_h), 
-                key="u_tt"
+        if not st.session_state.servidores:
+            st.info("No hay servidores disponibles para editar.")
+        else:
+            servidor_seleccionado_nombre = st.selectbox(
+                "Selecciona el servidor que deseas modificar:",
+                options=list(st.session_state.servidores.keys()),
+                key="sb_actualizar"
             )
-            nuevo_almacenamiento_total = st.number_input(
-                "Almacenamiento Total (GB)", 
-                min_value=1.0, 
-                value=float(servidor_actual.almacenamiento_total_gb), 
-                key="u_at"
-            )
+        
+            servidor_actual = st.session_state.servidores[servidor_seleccionado_nombre]
+        
+            st.write(f"Modificando atributos de: **{servidor_actual.nombre}**")
+        
+            col1, col2 = st.columns(2)
+            with col1:
+                nuevo_tiempo_total = st.number_input(
+                    "Tiempo Total (Horas)", 
+                    min_value=1.0, 
+                    value=float(servidor_actual.tiempo_total_h), 
+                    key="u_tt"
+                )
+                nuevo_almacenamiento_total = st.number_input(
+                    "Almacenamiento Total (GB)", 
+                    min_value=1.0, 
+                    value=float(servidor_actual.almacenamiento_total_gb), 
+                    key="u_at"
+                )
         
         with col2:
             nuevo_tiempo_caida = st.number_input(
@@ -384,22 +381,19 @@ with tab_actualizar:
             except ValueError as e:
                 st.error(f"❌ Error al actualizar: {e}")
 
-# =============================================================================
-# D - DELETE (ELIMINAR REGISTROS)
-# =============================================================================
-with tab_eliminar:
-    st.header("🗑️ Eliminar Servidor")
+    with tab_eliminar:
+        st.header("🗑️ Eliminar Servidor")
     
-    if not st.session_state.servidores:
-        st.info("No hay servidores registrados para eliminar.")
-    else:
-        servidor_a_eliminar = st.selectbox(
-            "Selecciona el servidor que deseas eliminar permanentemente:",
-            options=list(st.session_state.servidores.keys()),
-            key="sb_eliminar"
-        )
+        if not st.session_state.servidores:
+            st.info("No hay servidores registrados para eliminar.")
+        else:
+            servidor_a_eliminar = st.selectbox(
+                "Selecciona el servidor que deseas eliminar permanentemente:",
+                options=list(st.session_state.servidores.keys()),
+                key="sb_eliminar"
+            )
         
-        st.warning(f"⚠️ Estás a punto de borrar el registro del servidor **{servidor_a_eliminar}**.")
+            st.warning(f"⚠️ Estás a punto de borrar el registro del servidor **{servidor_a_eliminar}**.")
         
         if st.button("🔥 Confirmar y Eliminar", type="primary"):
             del st.session_state.servidores[servidor_a_eliminar]
