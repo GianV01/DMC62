@@ -235,10 +235,9 @@ elif secciones == "Ejercicio 3":
 
     st.divider()
     st.markdown("**Simplifica tus procesos, potencia tus resultados.**",text_alignment="center")
-
-else secciones == "Ejercicio 4":
     
-    st.set_page_config(page_title=" Administración de Servidores", page_icon="🖥️", layout="wide")
+else secciones == "Ejercicio 4":
+st.set_page_config(page_title=" Administración de Servidores", page_icon="🖥️", layout="wide")
     st.title(" 🖥️ Ejercicio 4 - Operatividad de Servidor (CRUD) ", text_alignment="center")
     st.divider()
     st.markdown("Este módulo define la entidad del servidor mediante sus atributos clave como:  "  
