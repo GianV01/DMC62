@@ -8,14 +8,16 @@ import librería_clases_proyecto1 as lcp
 # 1. Configuración inicial
 st.set_page_config(page_title="Proyecto 1 - Aplicación", page_icon="🚀", layout="wide")
 
-# 2. Paleta de colores ajustada para Fondo Blanco (Light Mode)
-COLOR_FONDO_PRINCIPAL = "#FFFFFF" # Blanco
-COLOR_TEXTO_PRINCIPAL = "#353535" # Gris Oscuro
-COLOR_ACENTO_PRINCIPAL = "#3C6E71" # Verde Azulado (Teal)
-COLOR_ACENTO_SECUNDARIO = "#284B63" # Azul Pizarra Oscuro
-COLOR_BORDES_FONDOS = "#D9D9D9" # Gris Claro
+# 2. Paleta de colores balanceada
+COLOR_FONDO_PRINCIPAL = "#FFFFFF" # Blanco (Área de formularios y resultados)
+COLOR_FONDO_SIDEBAR = "#353535" # Gris Oscuro (Barra lateral)
+COLOR_TEXTO_PRINCIPAL = "#353535" # Gris Oscuro (Texto en fondo blanco)
+COLOR_TEXTO_CLARO = "#FFFFFF" # Blanco (Texto en barra lateral y botones)
+COLOR_ACENTO_PRINCIPAL = "#3C6E71" # Verde Azulado (Botones, métricas, hover)
+COLOR_ACENTO_SECUNDARIO = "#284B63" # Azul Pizarra (Títulos, hover secundario)
+COLOR_BORDES = "#D9D9D9" # Gris Claro (Bordes de inputs y tarjetas)
 
-# 3. Función auxiliar para centralizar textos (Por defecto ahora usa texto oscuro)
+# 3. Función auxiliar para centralizar textos
 def texto_centrado(texto, etiqueta="h1", color=COLOR_TEXTO_PRINCIPAL, size=None, bold=False):
     size_style = f"font-size: {size};" if size else ""
     bold_style = "font-weight: bold;" if bold else ""
@@ -32,53 +34,55 @@ def texto_centrado(texto, etiqueta="h1", color=COLOR_TEXTO_PRINCIPAL, size=None,
 def inyectar_estilos():
     css = f"""
     <style>
-    /* Fondos y Texto General */
+    /* Fondo principal blanco y texto oscuro */
     .stApp {{
         background-color: {COLOR_FONDO_PRINCIPAL};
         color: {COLOR_TEXTO_PRINCIPAL};
     }}
     
+    /* Barra lateral en Gris Oscuro */
     [data-testid="stSidebar"] {{
-        background-color: {COLOR_FONDO_PRINCIPAL} !important;
-        border-right: 1px solid {COLOR_BORDES_FONDOS};
+        background-color: {COLOR_FONDO_SIDEBAR} !important;
+        border-right: 2px solid {COLOR_ACENTO_SECUNDARIO};
     }}
     
-    [data-testid="stSidebar"] * {{
-        color: {COLOR_TEXTO_PRINCIPAL} !important;
+    /* Forzar texto blanco en la barra lateral */
+    [data-testid="stSidebar"] h2, 
+    [data-testid="stSidebar"] p, 
+    [data-testid="stSidebar"] div {{
+        color: {COLOR_TEXTO_CLARO} !important;
     }}
 
-    /* Estilización innovadora del menú de navegación (Radio Buttons con Hover de Marco) */
+    /* Estilización innovadora del menú de navegación (Radio Buttons con Hover) */
     div.stRadio > div[role="radiogroup"] {{
-        gap: 15px;
-        padding: 10px;
+        gap: 12px;
+        padding: 5px;
     }}
     div.stRadio > div[role="radiogroup"] > label {{
-        background-color: {COLOR_FONDO_PRINCIPAL};
-        color: {COLOR_TEXTO_PRINCIPAL} !important;
+        background-color: transparent;
+        color: {COLOR_TEXTO_CLARO} !important;
         padding: 12px 20px;
         border-radius: 8px;
-        border: 2px solid {COLOR_BORDES_FONDOS}; /* Marco inicial sutil */
+        border: 2px solid {COLOR_ACENTO_SECUNDARIO}; /* Marco inicial Azul Pizarra */
         transition: all 0.3s ease;
         cursor: pointer;
     }}
     
-    /* INTERACCIÓN AL PASAR EL MOUSE (Hover) */
+    /* INTERACCIÓN AL PASAR EL MOUSE (Hover en Sidebar) */
     div.stRadio > div[role="radiogroup"] > label:hover {{
-        border-color: {COLOR_ACENTO_PRINCIPAL} !important; /* Resalta el marco */
-        box-shadow: 0 4px 10px rgba(60, 110, 113, 0.15); /* Sombra suave */
-        transform: translateY(-2px); /* Efecto de elevación */
+        border-color: {COLOR_ACENTO_PRINCIPAL} !important; /* Resalta en Verde Azulado */
+        background-color: rgba(60, 110, 113, 0.1); /* Ligero fondo verde azulado */
+        box-shadow: 0 4px 10px rgba(60, 110, 113, 0.4); /* Sombra iluminada */
+        transform: translateX(5px); /* Efecto de desplazamiento lateral */
     }}
     
+    /* Estado Activo / Seleccionado */
     div.stRadio > div[role="radiogroup"] > label[data-checked="true"] {{
-        background-color: {COLOR_ACENTO_PRINCIPAL};
-        color: {COLOR_FONDO_PRINCIPAL} !important;
+        background-color: {COLOR_ACENTO_PRINCIPAL} !important;
+        color: {COLOR_TEXTO_CLARO} !important;
         font-weight: bold;
         border-color: {COLOR_ACENTO_PRINCIPAL} !important;
-        box-shadow: 0 4px 10px rgba(60, 110, 113, 0.3);
-    }}
-    
-    div.stRadio > div[role="radiogroup"] > label[data-checked="true"] p {{
-        color: {COLOR_FONDO_PRINCIPAL} !important;
+        box-shadow: 0 4px 10px rgba(60, 110, 113, 0.5);
     }}
 
     /* Ocultar el círculo nativo del radio para que parezcan botones */
@@ -86,14 +90,14 @@ def inyectar_estilos():
         display: none; 
     }}
 
-    /* Inputs y Selectores */
+    /* Formularios, Inputs y Selectores (Fondo blanco, borde gris claro) */
     div[data-baseweb="select"] > div, 
     input[type="text"], 
     input[type="number"],
     div[data-baseweb="base-input"] {{
-        background-color: #F8F9FA !important;
+        background-color: {COLOR_FONDO_PRINCIPAL} !important;
         color: {COLOR_TEXTO_PRINCIPAL} !important;
-        border: 1px solid {COLOR_BORDES_FONDOS} !important;
+        border: 2px solid {COLOR_BORDES} !important;
         border-radius: 8px !important;
         transition: all 0.3s ease !important;
     }}
@@ -102,13 +106,13 @@ def inyectar_estilos():
     input[type="text"]:focus, 
     input[type="number"]:focus {{
         border-color: {COLOR_ACENTO_PRINCIPAL} !important;
-        box-shadow: 0 0 8px rgba(60, 110, 113, 0.3) !important;
+        box-shadow: 0 0 8px rgba(60, 110, 113, 0.2) !important;
     }}
 
     /* Botones */
     .stButton > button, button[kind="secondaryFormSubmit"] {{
         background-color: {COLOR_ACENTO_PRINCIPAL} !important;
-        color: {COLOR_FONDO_PRINCIPAL} !important;
+        color: {COLOR_TEXTO_CLARO} !important;
         font-weight: bold !important;
         border: 2px solid {COLOR_ACENTO_PRINCIPAL} !important;
         border-radius: 8px !important;
@@ -116,24 +120,24 @@ def inyectar_estilos():
         transition: all 0.3s ease !important;
     }}
     .stButton > button:hover, button[kind="secondaryFormSubmit"]:hover {{
-        background-color: {COLOR_FONDO_PRINCIPAL} !important;
-        color: {COLOR_ACENTO_PRINCIPAL} !important;
+        background-color: {COLOR_ACENTO_SECUNDARIO} !important;
+        border-color: {COLOR_ACENTO_SECUNDARIO} !important;
         transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(40, 75, 99, 0.3);
     }}
 
     /* Tarjetas/Contenedores */
     [data-testid="stVerticalBlockBorderWrapper"] {{
         border-radius: 12px !important;
-        border: 1px solid {COLOR_BORDES_FONDOS} !important;
-        background-color: #F9F9F9 !important;
+        border: 1px solid {COLOR_BORDES} !important;
+        background-color: rgba(217, 217, 217, 0.15) !important; /* Gris super claro transparente */
         padding: 1rem;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.02);
     }}
 
     /* Separadores y Métricas */
-    hr {{ border-color: {COLOR_BORDES_FONDOS} !important; opacity: 0.8; }}
+    hr {{ border-color: {COLOR_BORDES} !important; opacity: 1; }}
     [data-testid="stMetricValue"] {{ color: {COLOR_ACENTO_PRINCIPAL} !important; font-weight: bold; }}
-    [data-testid="stMetricLabel"] {{ color: {COLOR_TEXTO_PRINCIPAL} !important; font-weight: 600; }}
+    [data-testid="stMetricLabel"] {{ color: {COLOR_ACENTO_SECUNDARIO} !important; font-weight: 600; }}
     </style>
     """
     st.markdown(css, unsafe_allow_html=True)
@@ -141,7 +145,7 @@ def inyectar_estilos():
 inyectar_estilos()
 
 # 5. Barra Lateral Mejorada
-st.sidebar.markdown(f"<h2 style='color: {COLOR_ACENTO_SECUNDARIO}; text-align: center;'>Navegación</h2>", unsafe_allow_html=True)
+st.sidebar.markdown(f"<h2 style='color: {COLOR_TEXTO_CLARO}; text-align: center;'>Navegación</h2>", unsafe_allow_html=True)
 st.sidebar.markdown("<br>", unsafe_allow_html=True)
 
 secciones = st.sidebar.radio(
@@ -154,7 +158,7 @@ if secciones == "🏠 Home":
     texto_centrado("PROYECTO 1 – APLICACIÓN EN STREAMLIT", "h1", COLOR_ACENTO_SECUNDARIO, "2.5rem", bold=True)
     st.divider()
     
-    # 6. Animación JS ajustada para fondo blanco
+    # 6. Animación JS ajustada a los colores de la paleta
     banner_html = f"""
     <!DOCTYPE html>
     <html>
@@ -172,7 +176,7 @@ if secciones == "🏠 Home":
             let width, height;
             let particles = [];
             
-            const colors = ['{COLOR_ACENTO_PRINCIPAL}', '{COLOR_ACENTO_SECUNDARIO}', '{COLOR_TEXTO_PRINCIPAL}'];
+            const colors = ['{COLOR_ACENTO_PRINCIPAL}', '{COLOR_ACENTO_SECUNDARIO}', '{COLOR_FONDO_SIDEBAR}'];
 
             function resize() {{
                 width = canvas.width = window.innerWidth;
@@ -323,7 +327,7 @@ elif secciones == "🧾 Ejercicio 2 - Ventas":
             st.session_state.array_totales = np.array([], dtype=float)
         
         with st.form("form_registro_producto", clear_on_submit=True):
-            texto_centrado("Ingrese el Producto", "h3", COLOR_ACENTO_PRINCIPAL)
+            texto_centrado("Ingrese el Producto", "h3", COLOR_ACENTO_SECUNDARIO)
             col1, col2 = st.columns(2)
             
             with col1:
